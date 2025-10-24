@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="لوحة التحكم - بوابة الخدمات الأكاديمية لجامعة الملك فيصل">
+    <title>لوحة التحكم - بوابة الخدمات الأكاديمية</title>
+    
+    <!-- الأيقونة المفضلة -->
+    <link rel="icon" type="" href="kfu_logo.png">
+    <link rel="apple-touch-icon" href="kfu_logo.png">
+    
+    <!-- الخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ملفات التنسيق -->
+    <link rel="stylesheet" href="dashboard.css">
+    
+    <!-- البيانات المنظمة -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "لوحة التحكم - جامعة الملك فيصل",
+        "description": "بوابة الخدمات الأكاديمية للطلاب",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "جامعة الملك فيصل"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- مؤشر التحميل -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>جاري تحميل لوحة التحكم...</p>
+        </div>
+    </div>
+
+    <!-- زر القائمة للجوال -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="فتح/إغلاق القائمة">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- الحاوي الرئيسي -->
+    <div class="container">
+        <!-- الشريط الجانبي -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <img src="kfu_logo.png" alt="شعار جامعة الملك فيصل" class="kfu-logo" loading="eager">
+                    <div class="university-info">
+                        <h2>جامعة الملك فيصل</h2>
+                        <p>بوابة الخدمات الأكاديمية</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- معلومات المستخدم -->
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="user-details">
+                    <h3>نورة عبدالعزيز النوشان</h3>
+                    <p class="user-id">KFU2025001</p>
+                    <span class="user-status">طالبة نشطة</span>
+                </div>
+            </div>
+            
+            <!-- التنقل -->
+            <nav class="sidebar-nav" role="navigation">
+                <ul>
+                    <li>
+                        <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#courses" class="nav-link" data-section="courses">
+                            <i class="fas fa-book" aria-hidden="true"></i>
+                            <span>المقررات المسجلة</span>
+                            <span class="badge">5</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#schedule" class="nav-link" data-section="schedule">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                            <span>الجدول الدراسي</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#transcript" class="nav-link" data-section="transcript">
+                            <i class="fas fa-file-alt" aria-hidden="true"></i>
+                            <span>السجل الأكاديمي</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#id-card" class="nav-link" data-section="id-card">
+                            <i class="fas fa-id-card" aria-hidden="true"></i>
+                            <span>البطاقة الجامعية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#finance" class="nav-link" data-section="finance">
+                            <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
+                            <span>الخدمات المالية</span>
+                            <span class="badge alert">!</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#e-learning" class="nav-link" data-section="e-learning">
+                            <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+                            <span>التعليم عن بعد</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#support" class="nav-link" data-section="support">
+                            <i class="fas fa-headset" aria-hidden="true"></i>
+                            <span>الدعم الفني</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- إعدادات سريعة -->
+            <div class="sidebar-footer">
+                <button class="settings-btn" onclick="toggleSettings()" aria-label="الإعدادات">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="logout-btn" onclick="logout()" aria-label="تسجيل الخروج">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <!-- رأس الصفحة -->
+            <header class="main-header">
+                <div class="header-left">
+                    <h1 id="pageTitle">لوحة التحكم</h1>
+                    <p id="pageSubtitle">مرحباً بك في بوابة الخدمات الأكاديمية</p>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-button notification-btn" onclick="toggleNotifications()" aria-label="الإشعارات">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="icon-button theme-toggle" onclick="toggleTheme()" aria-label="تبديل المظهر">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="user-menu">
+                        <button class="user-menu-btn" onclick="toggleUserMenu()" aria-label="قائمة المستخدم">
+                            <div class="user-avatar-small">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span>نورة النوشان</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-menu-dropdown" id="userMenuDropdown">
+                            <a href="#profile"><i class="fas fa-user"></i> الملف الشخصي</a>
+                            <a href="#settings"><i class="fas fa-cog"></i> الإعدادات</a>
+                            <a href="#help"><i class="fas fa-question-circle"></i> المساعدة</a>
+                            <hr>
+                            <a href="#logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- لوحة الإشعارات -->
+            <div class="notifications-panel" id="notificationsPanel">
+                <div class="notifications-header">
+                    <h3>الإشعارات</h3>
+                    <button onclick="markAllAsRead()">تحديد الكل كمقروء</button>
+                </div>
+                <div class="notifications-list">
+                    <div class="notification-item unread">
+                        <i class="fas fa-exclamation-circle text-warning"></i>
+                        <div class="notification-content">
+                            <h4>تذكير بسداد الرسوم</h4>
+                            <p>يرجى سداد رسوم الاعتماد </p>
+                            <span class="notification-time">منذ ساعتين</span>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <i class="fas fa-calendar text-info"></i>
+                        <div class="notification-content">
+                           </div>
+                    </div>
+                    <div class="notification-item">
+                        <i class="fas fa-check-circle text-success"></i>
+                        <div class="notification-content">
+                            <h4>تم تحديث الجدول الدراسي</h4>
+                            <p>تم نشر الجدول الدراسي للفصل الاول</p>
+                            <span class="notification-time">منذ يوم</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المحتوى الديناميكي -->
+            <div class="content-wrapper">
+                <!-- الصفحة الرئيسية -->
+                <section id="dashboard" class="content-section active">
+                    <div class="welcome-card">
+                        <div class="welcome-content">
+                            <h1>مرحباً بك، نورة عبدالعزيز النوشان</h1>
+                            <p>أهلاً وسهلاً بك في بوابة الخدمات الأكاديمية - جامعة الملك فيصل</p>
+                            <div class="welcome-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <span>الفصل الاول 2025-2026</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>آخر دخول: اليوم 09:30 ص</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="welcome-illustration">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+
+                    <!-- ملخص الحالة -->
+                    <div class="dashboard-summary">
+                        <div class="summary-card">
+                            <div class="card-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>التخصص</h3>
+                                <p>إدارة أعمال</p>
+                                <span>برنامج التجسير</span>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>الفصل الدراسي</h3>
+                                <p>الفصل الاول</p>
+                                <span>2025-2026</span>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="card-icon">
+                                <i class="fas fa-laptop-house"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>نوع الدراسة</h3>
+                                <p>عن بعد</p>
+                                <span>دوام كامل</span>
+                            </div>
+                        </div>
+                        <div class="summary-card alert">
+                            <div class="card-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>الرسوم المطلوبة</h3>
+                                <p>2,000 ريال</p>
+                                <span>رسوم اعتماد الإعفاء من الرسوم الدراسية</span>
+                            </div>
+                            <div class="card-action">
+                                <button onclick="showPaymentModal()" class="btn-primary">سداد الآن</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- الخدمات السريعة -->
+                    <div class="quick-services">
+                        <div class="section-header">
+                            <h2>الخدمات السريعة</h2>
+                            <p>الوصول السريع للخدمات الأكثر استخداماً</p>
+                        </div>
+                        <div class="service-grid">
+                            <div class="service-card" onclick="navigateToSection('courses')">
+                                <div class="service-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h3>المقررات المسجلة</h3>
+                                    <p>عرض المقررات الدراسية المسجلة للفصل الحالي</p>
+                                    <span class="service-badge">5 مقررات</span>
+                                </div>
+                                <div class="service-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                            </div>
+                            <div class="service-card" onclick="navigateToSection('schedule')">
+                                <div class="service-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h3>الجدول الدراسي</h3>
+                                    <p>مواعيد المحاضرات والامتحانات</p>
+                                    <span class="service-badge success">محدث</span>
+                                </div>
+                                <div class="service-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                            </div>
+                            <div class="service-card" onclick="navigateToSection('id-card')">
+                                <div class="service-icon">
+                                    <i class="fas fa-id-card"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h3>البطاقة الجامعية</h3>
+                                    <p>عرض وطباعة البطاقة الجامعية</p>
+                                    <span class="service-badge success">جاهزة</span>
+                                </div>
+                                <div class="service-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                            </div>
+                            <div class="service-card" onclick="navigateToSection('finance')">
+                                <div class="service-icon">
+                                    <i class="fas fa-money-check-alt"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h3>الخدمات المالية</h3>
+                                    <p>سداد الرسوم وإدارة المدفوعات</p>
+                                    <span class="service-badge warning">مطلوب سداد</span>
+                                </div>
+                                <div class="service-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                            </div>
+                            <div class="service-card" onclick="navigateToSection('e-learning')">
+                                <div class="service-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h3>المحاضرات المباشرة</h3>
+                                    <p>الوصول للمحاضرات الافتراضية</p>
+                                    <span class="service-badge info">متاح</span>
+                                </div>
+                                <div class="service-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                            </div>
+                            <div class="service-card" onclick="navigateToSection('transcript')">
+                                <div class="service-icon">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                                <div class="service-content">
+                                    <h3>السجل الأكاديمي</h3>
+                                    <p>عرض الدرجات والمعدل التراكمي</p>
+                                    <span class="service-badge success">محدث</span>
+                                </div>
+                                <div class="service-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- الإعلانات والأخبار -->
+                    <div class="announcements">
+                        <div class="section-header">
+                            <h2>الإعلانات والأخبار</h2>
+                            <button class="btn-secondary">عرض الكل</button>
+                        </div>
+                        <div class="announcements-grid">
+                            <div class="announcement-card">
+                                <div class="announcement-icon">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </div>
+                                <div class="announcement-content">
+                                    <h4>بداية التسجيل للفصل الدراسي القادم</h4>
+                                    <p>يبدأ التسجيل للفصل الدراسي الثالث يوم الأحد القادم</p>
+                                    <span class="announcement-time">منذ يومين</span>
+                                </div>
+                            </div>
+                            <div class="announcement-card">
+                                <div class="announcement-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="announcement-content">
+                                    <h4>مواعيد الامتحانات النهائية</h4>
+                                    <p>تم نشر جدول الامتحانات النهائية للفصل الحالي</p>
+                                    <span class="announcement-time">منذ 3 أيام</span>
+                                </div>
+                            </div>
+                            <div class="announcement-card">
+                                <div class="announcement-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="announcement-content">
+                                    <h4>تذكير بسداد الرسوم</h4>
+                                    <p>يرجى سداد رسوم الاعتماد قبل نهاية الأسبوع</p>
+                                    <span class="announcement-time">منذ أسبوع</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- قسم المقررات المسجلة -->
+                <section id="courses" class="content-section">
+                    <div class="section-header">
+                        <h2>المقررات المسجلة</h2>
+                        <p>عرض وإدارة المقررات الدراسية المسجلة للفصل الحالي</p>
+                    </div>
+                    <div id="courses-content" class="data-table-container">
+                        <!-- سيتم تحميل بيانات المقررات هنا بواسطة JavaScript -->
+                    </div>
+                </section>
+
+                <!-- قسم الجدول الدراسي -->
+                <section id="schedule" class="content-section">
+                    <div class="section-header">
+                        <h2>الجدول الدراسي</h2>
+                        <p>مواعيد المحاضرات والامتحانات</p>
+                    </div>
+                    <div id="schedule-content" class="data-table-container">
+                        <!-- سيتم تحميل بيانات الجدول هنا بواسطة JavaScript -->
+                    </div>
+                </section>
+
+                <!-- قسم السجل الأكاديمي -->
+                <section id="transcript" class="content-section">
+                    <div class="section-header">
+                        <h2>السجل الأكاديمي</h2>
+                        <p>عرض الدرجات والمعدل التراكمي</p>
+                    </div>
+                    <div id="transcript-content" class="data-table-container">
+                        <!-- سيتم تحميل بيانات السجل الأكاديمي هنا بواسطة JavaScript -->
+                    </div>
+                </section>
+
+                <!-- قسم البطاقة الجامعية -->
+                <section id="id-card" class="content-section">
+                    <div class="section-header">
+                        <h2>البطاقة الجامعية</h2>
+                        <p>عرض وطباعة البطاقة الجامعية</p>
+                    </div>
+                    <div id="id-card-content" class="id-card-container">
+                        <!-- سيتم تحميل بيانات البطاقة الجامعية هنا بواسطة JavaScript -->
+                    </div>
+                </section>
+
+                <!-- قسم الخدمات المالية -->
+                <section id="finance" class="content-section">
+                    <div class="section-header">
+                        <h2>الخدمات المالية</h2>
+                        <p>إدارة الرسوم والمدفوعات الجامعية</p>
+                    </div>
+                    <div id="finance-content" class="data-table-container">
+                        <!-- سيتم تحميل بيانات الخدمات المالية هنا بواسطة JavaScript -->
+                    </div>
+                </section>
+
+                <!-- قسم التعليم عن بعد -->
+                <section id="e-learning" class="content-section">
+                    <div class="section-header">
+                        <h2>التعليم عن بعد</h2>
+                        <p>الوصول إلى المحاضرات والمواد التعليمية</p>
+                    </div>
+                    <div id="e-learning-content" class="e-learning-grid">
+                        <!-- سيتم تحميل بيانات التعليم عن بعد هنا بواسطة JavaScript -->
+                    </div>
+                </section>
+
+                <!-- قسم الدعم الفني -->
+                <section id="support" class="content-section">
+                    <div class="section-header">
+                        <h2>الدعم الفني</h2>
+                        <p>الحصول على المساعدة والدعم الفني</p>
+                    </div>
+                    <div id="support-content" class="support-container">
+                        <!-- سيتم تحميل بيانات الدعم الفني هنا بواسطة JavaScript -->
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- نافذة منبثقة للإعدادات -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>الإعدادات</h3>
+                <button type="button" class="modal-close" onclick="closeSettings()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-group">
+                    <h4>المظهر</h4>
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider">الوضع المظلم</span>
+                    </label>
+                </div>
+                <div class="settings-group">
+                    <h4>الإشعارات</h4>
+                    <label class="switch">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span class="slider">تفعيل الإشعارات</span>
+                    </label>
+                </div>
+                <div class="settings-group">
+                    <h4>اللغة</h4>
+                    <select id="languageSelect">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- ========= نافذة سداد الرسوم (الجزء المضاف) ========= -->
+    <!-- ================================================== -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>سداد الرسوم المستحقة</h3>
+                <button type="button" class="modal-close" onclick="closePaymentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-instructions">
+                    <h4>تعليمات السداد</h4>
+                    <p>يرجى تحويل المبلغ المستحق إلى الحساب البنكي التالي ثم إرفاق صورة من إيصال التحويل.</p>
+                    <div class="bank-details">
+                        <p><strong>اسم البنك:</strong>البنك الراجحي</p>
+               
+                        <p><strong>رقم الآيبان:</strong> <span id="ibanNumber">SA5480000318608016038504</span></p>
+                        <p><strong>المبلغ المستحق:</strong> <span id="paymentAmount">2,000</span> ريال سعودي</p>
+                    </div>
+                </div>
+                <form id="paymentForm" class="payment-form">
+                    <div class="form-group">
+                        <label for="receiptUpload">إرفاق إيصال السداد</label>
+                        <input type="file" id="receiptUpload" name="receiptUpload" accept="image/*" required>
+                        <small>الرجاء إرفاق صورة واضحة للإيصال (JPG, PNG).</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentNotes">ملاحظات (اختياري)</label>
+                        <textarea id="studentNotes" name="studentNotes" rows="3" placeholder="يمكنك إضافة أي ملاحظات هنا..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> إرسال الإيصال
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="closePaymentModal()">إلغاء</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- الأسكريبت -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="dashboard.js"></script>
+    
+    <!-- تحليلات الأداء -->
+    <script>
+        // قياس أداء التحميل
+        window.addEventListener('load', function() {
+            const loadTime = performance.now();
+            console.log(`تم تحميل لوحة التحكم في ${Math.round(loadTime)} ميلي ثانية`);
+            
+            // إخفاء مؤشر التحميل
+            const loadingOverlay = document.getElementById('loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 300);
+            }
+        });
+    </script>
+</body>
+</html>
+
+

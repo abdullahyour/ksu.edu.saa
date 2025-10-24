@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="بوابة الخدمات الأكاديمية لجامعة الملك فيصل - تسجيل الدخول الآمن للطلاب وأعضاء هيئة التدريس">
+    <meta name="keywords" content="جامعة الملك فيصل, بوابة الطلاب, الخدمات الأكاديمية, تسجيل الدخول">
+    <meta name="author" content="جامعة الملك فيصل">
+    <title>بوابة الخدمات الأكاديمية - جامعة الملك فيصل</title>
+    
+    <!-- الأيقونة المفضلة -->
+    <link rel="icon" type="image/png" href="kfu_logo.png">
+    <link rel="apple-touch-icon" href="kfu_logo.png">
+    
+    <!-- الخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ملف التنسيق -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- البيانات المنظمة -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "جامعة الملك فيصل",
+        "url": "https://www.kfu.edu.sa",
+        "logo": "assets/images/kfu_logo.png",
+        "description": "بوابة الخدمات الأكاديمية لجامعة الملك فيصل"
+    }
+    </script>
+</head>
+<body>
+    <!-- مؤشر التحميل -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>جاري التحميل...</p>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <!-- رأس الصفحة -->
+        <header class="login-header">
+            <div class="university-logo">
+                <div class="logo-circle">
+                    <img src="kfu_logo.png" alt="شعار جامعة الملك فيصل" loading="eager">
+                </div>
+                <h1>جامعة الملك فيصل</h1>
+                <p>بوابة الخدمات الأكاديمية</p>
+            </div>
+        </header>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="login-form-container">
+            <div class="login-form">
+                <h2>تسجيل الدخول</h2>
+                
+                <!-- رسائل التنبيه -->
+                <div id="alert-container" class="alert-container" style="display: none;">
+                    <div class="alert" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span id="alert-message"></span>
+                        <button type="button" class="alert-close" onclick="closeAlert()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="username">اسم المستخدم أو الإيميل</label>
+                        <div class="input-group">
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                placeholder="أدخل اسم المستخدم أو الإيميل" 
+                                required 
+                                autocomplete="username"
+                                aria-describedby="username-error"
+                            >
+                        </div>
+                        <div id="username-error" class="error-message" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock" aria-hidden="true"></i>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="أدخل كلمة المرور" 
+                                required 
+                                autocomplete="current-password"
+                                aria-describedby="password-error"
+                            >
+                            <button 
+                                type="button" 
+                                class="toggle-password" 
+                                onclick="togglePassword()"
+                                aria-label="إظهار/إخفاء كلمة المرور"
+                            >
+                                <i class="fas fa-eye" id="toggleIcon" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div id="password-error" class="error-message" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <span class="checkmark"></span>
+                            تذكرني
+                        </label>
+                        <a href="#" class="forgot-password" onclick="showForgotPassword()">نسيت كلمة المرور؟</a>
+                    </div>
+
+                    <button type="submit" class="login-btn" id="loginButton">
+                        <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                        <span>تسجيل الدخول</span>
+                    </button>
+                </form>
+
+                <!-- الوصول السريع -->
+                <div class="quick-access">
+                    <h3>وصول سريع</h3>
+                    <div class="quick-links">
+                        <a href="#" class="quick-link" onclick="showNewStudentInfo()">
+                            <i class="fas fa-user-graduate" aria-hidden="true"></i>
+                            <span>طالب جديد</span>
+                        </a>
+                        <a href="#" class="quick-link" onclick="showAcademicNumberInquiry()">
+                            <i class="fas fa-file-alt" aria-hidden="true"></i>
+                            <span>استعلام عن الرقم الأكاديمي</span>
+                        </a>
+                        <a href="#" class="quick-link" onclick="showAcademicCalendar()">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                            <span>التقويم الأكاديمي</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- تذييل الصفحة -->
+        <footer class="login-footer">
+            <div class="footer-content">
+                <p>جميع الحقوق محفوظة لجامعة الملك فيصل © 2025</p>
+                <p>تصميم وتطوير عمادة التعلم الإلكتروني وتقنية المعلومات</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- نافذة منبثقة لاستعادة كلمة المرور -->
+    <div id="forgotPasswordModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>استعادة كلمة المرور</h3>
+                <button type="button" class="modal-close" onclick="closeForgotPasswordModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>أدخل عنوان بريدك الإلكتروني وسنرسل لك رابط لإعادة تعيين كلمة المرور.</p>
+                <form id="forgotPasswordForm">
+                    <div class="form-group">
+                        <label for="resetEmail">البريد الإلكتروني</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="resetEmail" name="resetEmail" placeholder="أدخل بريدك الإلكتروني" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>إرسال رابط الاستعادة</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- الأسكريبت -->
+    <script src="script.js"></script>
+    
+    <!-- تحليلات الأداء -->
+    <script>
+        // قياس أداء التحميل
+        window.addEventListener('load', function() {
+            const loadTime = performance.now();
+            console.log(`تم تحميل الصفحة في ${Math.round(loadTime)} ميلي ثانية`);
+        });
+    </script>
+</body>
+</html>
+
