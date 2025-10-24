@@ -261,11 +261,11 @@ function showNotificationAndForm() {
             }, 1500);
 
 </script>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>نموذج التسجيل - جامعة الملك فيصل</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -292,9 +292,7 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
   padding:36px 48px 48px 48px;
   border-top:6px solid var(--uf-green);
-  display:none; /* مخفي افتراضياً */
-  position:relative;
-  z-index:1000;
+  display:none; /* النموذج مخفي افتراضياً */
 }
 header{
   display:flex;
@@ -332,6 +330,7 @@ h1{
   color:var(--muted);
   font-size:14px;
 }
+
 .grid2{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -345,7 +344,8 @@ label{
   margin-bottom:8px;
   font-size:15px;
 }
-input[type="text"], input[type="email"], input[type="number"], input[type="tel"], input[type="date"], select, textarea{
+input[type="text"], input[type="email"], input[type="number"],
+input[type="tel"], input[type="date"], select, textarea{
   width:100%;
   padding:14px 12px;
   border-radius:10px;
@@ -360,6 +360,7 @@ input:focus, select:focus, textarea:focus{
   box-shadow:0 0 8px rgba(11,107,68,0.12);
 }
 textarea{min-height:96px; resize:vertical;}
+
 .section-title{
   margin-top:26px;
   margin-bottom:8px;
@@ -368,11 +369,13 @@ textarea{min-height:96px; resize:vertical;}
   border-bottom:1px dashed #eee;
   padding-bottom:10px;
 }
+
 .files-row{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
 }
+
 .account-section{
   display:flex;
   align-items:center;
@@ -406,6 +409,7 @@ textarea{min-height:96px; resize:vertical;}
   font-weight:600;
   font-size:14px;
 }
+
 .submit-area{
   text-align:center;
   margin-top:26px;
@@ -430,6 +434,8 @@ textarea{min-height:96px; resize:vertical;}
   font-size:13px;
   margin-top:12px;
 }
+
+/* responsive */
 @media (max-width:900px){
   .grid2{grid-template-columns:1fr;}
   .files-row{grid-template-columns:1fr;}
@@ -439,11 +445,8 @@ textarea{min-height:96px; resize:vertical;}
 </head>
 <body>
 
-<!-- زر فتح النموذج -->
-<button id="openFormBtn" class="btn" style="margin:20px;">تقديم طلب جديد</button>
-
 <!-- النموذج -->
-<div class="container" id="registrationContainer">
+<div class="container" id="registrationFormContainer">
   <header>
     <div class="brand">
       <div class="logo">FKU</div>
@@ -459,7 +462,7 @@ textarea{min-height:96px; resize:vertical;}
     </div>
   </header>
 
-  <form id="registrationForm" action="https://formspree.io/f/meordlav" method="POST" enctype="multipart/form-data" novalidate>
+  <form id="registrationForm" action="https://formcarry.com/s/ON8xkE-353d" method="POST" enctype="multipart/form-data" novalidate>
     <div class="grid2">
       <div>
         <label>الاسم الكامل (رباعي) *</label>
@@ -558,36 +561,159 @@ textarea{min-height:96px; resize:vertical;}
         <input type="text" name="prevInstitute">
 
         <label>النسبة / المعدل</label>
-        <input type="text" name="prevGrade">
+        <input type="text" name="gpa">
 
-        <label>رفع الملفات (رابط بديل)</label>
-        <input type="text" name="fileLink" placeholder="أدخل رابط الملف إن وجد">
+        <label>التخصص المطلوب *</label>
+        <input type="text" name="desiredMajor" required>
+
+        <label>نوع الدراسة *</label>
+        <select name="studyType" required>
+          <option value="">اختر...</option>
+          <option>انتظام</option>
+          <option>انتساب</option>
+          <option>تعليم عن بعد</option>
+        </select>
+
+        <label>الكلية / القسم *</label>
+        <select name="faculty" required>
+          <option value="">اختر الكلية</option>
+          <option>كلية الطب</option>
+          <option>كلية الهندسة</option>
+          <option>كلية العلوم</option>
+          <option>كلية الآداب</option>
+          <option>كلية إدارة الأعمال</option>
+          <option>كلية الحاسبات وتقنية المعلومات</option>
+          <option>كلية التربية</option>
+          <option>كلية القانون</option>
+          <option>كلية الصحة العامة</option>
+        </select>
+
+        <label>هل لديك أي حالة طبية هامة؟ (إن وُجد)</label>
+        <input type="text" name="medicalInfo" placeholder="اكتب إذا كان هناك أمر طبي مهم">
+
+        <div style="margin-top:12px" class="section-title">جهة الاتصال في حالات الطوارئ</div>
+
+        <label>اسم جهة الاتصال للطوارئ</label>
+        <input type="text" name="emergencyName" placeholder="اسم قريب أو شخص">
+
+        <label>صلة القرابة</label>
+        <input type="text" name="emergencyRelation" placeholder="أم/ أب/ أخ/ صديق ...">
+
+        <label>رقم الطوارئ</label>
+        <input type="tel" name="emergencyPhone" placeholder="رقم جوال للطوارئ">
       </div>
+    </div>
+
+    <!-- الملفات -->
+    <div style="margin-top:18px">
+      <div class="section-title">المرفقات المطلوبة</div>
+      <div class="files-row" style="margin-top:8px;">
+        <div>
+          <label>صورة الهوية / الإقامة *</label>
+          <input type="file" name="fileId" accept="image/*,application/pdf" required>
+        </div>
+        <div>
+          <label>صورة الشهادة / المؤهل *</label>
+          <input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
+        </div>
+      </div>
+
+      <div class="files-row" style="margin-top:12px;">
+        <div>
+          <label>صورة شخصية (مقاس - واضح) *</label>
+          <input type="file" name="filePhoto" accept="image/*" required>
+        </div>
+        <div>
+          <label>إيصال الدفع (إن وُجد)</label>
+          <input type="file" name="fileReceipt" accept="image/*,application/pdf">
+        </div>
+      </div>
+    </div>
+
+    <!-- الحساب والنسخ -->
+    <div class="account-section" style="margin-top:18px">
+      <div class="account-left">
+        <div>
+          <div style="font-size:13px;color:#666">لتحويل الرسوم استخدمي:</div>
+          <div style="font-weight:800;color:var(--uf-green);">SA1980000857608010276380</div>
+          <div style="font-size:13px;color:#444" class="bank-name">بنك الأهلي السعودي</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="fees">رسوم التسجيل: 1200 ريال</div>
+        <button type="button" class="copy-btn" id="copyAccountBtn">نسخ رقم الحساب</button>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <label><input type="checkbox" name="agree" required> أقرّ بأن جميع البيانات المدخلة صحيحة ومطابقة للوثائق الرسمية.</label>
     </div>
 
     <div class="submit-area">
       <button type="submit" class="btn">إرسال الطلب</button>
-      <button type="button" class="btn cancel" id="closeFormBtn">إلغاء</button>
+      <button type="reset" class="btn cancel">إلغاء</button>
     </div>
-    <p class="note">بعد الإرسال سيتم استلام بياناتك على بريد الإدارة.</p>
+
+    <div class="note">جميع الحقوق محفوظة © جامعة الملك فيصل</div>
+
   </form>
 </div>
 
 <script>
-// فتح النموذج
-const openBtn = document.getElementById('openFormBtn');
-const container = document.getElementById('registrationContainer');
-const closeBtn = document.getElementById('closeFormBtn');
+// عرض النموذج عند الضغط على زر "طلب جديد" الموجود عندك
+function showRegistrationForm(){
+  const formContainer = document.getElementById('registrationFormContainer');
+  formContainer.style.display = 'block';
+  formContainer.scrollIntoView({behavior:'smooth'});
+}
 
-openBtn.addEventListener('click', ()=>container.style.display='block');
-closeBtn.addEventListener('click', ()=>container.style.display='none');
+// إخفاء النموذج إذا ضغط خارج النموذج
+document.addEventListener('click', function(e){
+  const formContainer = document.getElementById('registrationFormContainer');
+  if(!formContainer.contains(e.target) && formContainer.style.display==='block'){
+    formContainer.style.display = 'none';
+  }
+});
 
-// اغلاق لو ضغط خارج النموذج
-window.addEventListener('click', (e)=>{
-  if(e.target===container) container.style.display='none';
+// نسخ رقم الحساب
+document.getElementById('copyAccountBtn').addEventListener('click', function(){
+  const text = 'SA1980000857608010276380 - بنك الأهلي السعودي';
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=> {
+      alert('✅ تم نسخ رقم الحساب: ' + text);
+    }).catch(()=> {
+      prompt('انسخ رقم الحساب يدوياً:', text);
+    });
+  }else{
+    prompt('انسخ رقم الحساب يدوياً:', text);
+  }
+});
+
+// إرسال النموذج عبر Formcarry
+document.getElementById('registrationForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const fd = new FormData(this);
+
+  fetch(this.action, {
+    method: 'POST',
+    body: fd,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      alert('✅ تم إرسال الطلب بنجاح، ستصلك رسالة تأكيد على بريدك الإلكتروني.');
+      this.reset();
+    } else {
+      alert('⚠️ لم يتم إرسال الطلب، تحقق من الاتصال أو إعداد Formcarry.');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('حدث خطأ أثناء الإرسال، حاول/حاولي مرة أخرى لاحقًا.');
+  });
 });
 </script>
-
 </body>
 </html>
 </body>
