@@ -295,141 +295,28 @@ body{
   position:relative;
   z-index:100;
 }
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:8px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.logo{
-  width:72px;
-  height:72px;
-  border-radius:10px;
-  background:linear-gradient(135deg,var(--uf-green),#064b33);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-weight:800;
-  font-size:18px;
-  box-shadow:0 4px 14px rgba(11,107,68,0.15) inset;
-}
-h1{
-  margin:0;
-  font-size:20px;
-  color:var(--uf-green);
-  font-weight:800;
-}
-.subtitle{
-  margin:0;
-  color:var(--muted);
-  font-size:14px;
-}
-.grid2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:28px 36px;
-  margin-top:20px;
-}
-label{
-  display:block;
-  font-weight:600;
-  color:var(--uf-green);
-  margin-bottom:8px;
-  font-size:15px;
-}
-input[type="text"], input[type="email"], input[type="number"],
-input[type="tel"], input[type="date"], select, textarea{
-  width:100%;
-  padding:14px 12px;
-  border-radius:10px;
-  border:1px solid #dcdcdc;
-  background:#fbfbfb;
-  font-size:15px;
-  transition:box-shadow .18s, border-color .18s;
-}
-input:focus, select:focus, textarea:focus{
-  outline:none;
-  border-color:var(--uf-green);
-  box-shadow:0 0 8px rgba(11,107,68,0.12);
-}
+header{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:8px;}
+.brand{display:flex; align-items:center; gap:14px;}
+.logo{width:72px; height:72px; border-radius:10px; background:linear-gradient(135deg,var(--uf-green),#064b33); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:18px; box-shadow:0 4px 14px rgba(11,107,68,0.15) inset;}
+h1{margin:0; font-size:20px; color:var(--uf-green); font-weight:800;}
+.subtitle{margin:0; color:var(--muted); font-size:14px;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:28px 36px; margin-top:20px;}
+label{display:block; font-weight:600; color:var(--uf-green); margin-bottom:8px; font-size:15px;}
+input[type="text"], input[type="email"], input[type="number"], input[type="tel"], input[type="date"], select, textarea{width:100%; padding:14px 12px; border-radius:10px; border:1px solid #dcdcdc; background:#fbfbfb; font-size:15px; transition:box-shadow .18s, border-color .18s;}
+input:focus, select:focus, textarea:focus{outline:none; border-color:var(--uf-green); box-shadow:0 0 8px rgba(11,107,68,0.12);}
 textarea{min-height:96px; resize:vertical;}
-.section-title{
-  margin-top:26px;
-  margin-bottom:8px;
-  font-weight:700;
-  color:#444;
-  border-bottom:1px dashed #eee;
-  padding-bottom:10px;
-}
-.files-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.account-section{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  background:#fbfbfb;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid #efecec;
-  margin-top:20px;
-}
+.section-title{margin-top:26px; margin-bottom:8px; font-weight:700; color:#444; border-bottom:1px dashed #eee; padding-bottom:10px;}
+.files-row{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.account-section{display:flex; align-items:center; justify-content:space-between; gap:12px; background:#fbfbfb; padding:14px; border-radius:10px; border:1px solid #efecec; margin-top:20px;}
 .account-left{display:flex; align-items:center; gap:12px;}
-.copy-btn{
-  background:var(--gold);
-  color:#fff;
-  border:none;
-  padding:10px 16px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:700;
-  box-shadow:0 6px 18px rgba(212,175,55,0.12);
-}
-.copy-btn:active{transform:translateY(1px)}
-.fees{
-  font-weight:800;
-  color:var(--uf-green);
-  font-size:15px;
-}
-.bank-name{
-  color:#333;
-  font-weight:600;
-  font-size:14px;
-}
-.submit-area{
-  text-align:center;
-  margin-top:26px;
-  display:flex;
-  justify-content:center;
-  gap:12px;
-}
-.btn{
-  background:var(--uf-green);
-  color:#fff;
-  border:none;
-  padding:12px 36px;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  font-size:16px;
-}
-.btn.cancel{background:#9e9e9e}
-.note{
-  text-align:center;
-  color:#888;
-  font-size:13px;
-  margin-top:12px;
-}
+.copy-btn{background:var(--gold); color:#fff; border:none; padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:700; box-shadow:0 6px 18px rgba(212,175,55,0.12);}
+.copy-btn:active{transform:translateY(1px);}
+.fees{font-weight:800; color:var(--uf-green); font-size:15px;}
+.bank-name{color:#333; font-weight:600; font-size:14px;}
+.submit-area{text-align:center; margin-top:26px; display:flex; justify-content:center; gap:12px;}
+.btn{background:var(--uf-green); color:#fff; border:none; padding:12px 36px; border-radius:10px; font-weight:700; cursor:pointer; font-size:16px;}
+.btn.cancel{background:#9e9e9e;}
+.note{text-align:center; color:#888; font-size:13px; margin-top:12px;}
 .toast{
   position:fixed;
   top:20px;
@@ -460,9 +347,10 @@ textarea{min-height:96px; resize:vertical;}
 <!-- إشعار -->
 <div class="toast" id="toast"></div>
 
-<!-- النموذج كامل -->
+<!-- النموذج -->
 <div class="container" id="registrationFormContainer">
 <form id="registrationForm" action="https://formcarry.com/s/ON8xkE-353d" method="POST" enctype="multipart/form-data" novalidate>
+
 <header>
   <div class="brand">
     <div class="logo">FKU</div>
@@ -479,7 +367,6 @@ textarea{min-height:96px; resize:vertical;}
 </header>
 
 <div class="grid2">
-  <!-- عمود 1 -->
   <div>
     <label>الاسم الكامل (رباعي) *</label>
     <input type="text" name="fullName" required>
@@ -550,7 +437,6 @@ textarea{min-height:96px; resize:vertical;}
     <input type="email" name="email" required>
   </div>
 
-  <!-- عمود 2 -->
   <div>
     <label>نوع المؤهل السابق *</label>
     <select name="prevDegree" required>
@@ -590,7 +476,6 @@ textarea{min-height:96px; resize:vertical;}
     </select>
     <label>هل لديك أي حالة طبية هامة؟ (إن وُجد)</label>
     <input type="text" name="medicalInfo" placeholder="اكتب إذا كان هناك أمر طبي مهم">
-
     <div style="margin-top:12px" class="section-title">جهة الاتصال في حالات الطوارئ</div>
     <label>اسم جهة الاتصال للطوارئ</label>
     <input type="text" name="emergencyName" placeholder="اسم قريب أو شخص">
@@ -626,7 +511,6 @@ textarea{min-height:96px; resize:vertical;}
   </div>
 </div>
 
-<!-- الحساب -->
 <div class="account-section" style="margin-top:18px">
   <div class="account-left">
     <div>
@@ -649,47 +533,53 @@ textarea{min-height:96px; resize:vertical;}
   <button type="submit" class="btn">إرسال الطلب</button>
   <button type="reset" class="btn cancel">إلغاء</button>
 </div>
-
 <div class="note">جميع الحقوق محفوظة © جامعة الملك فيصل</div>
+
 </form>
 </div>
 
 <script>
-// ربط النموذج بزرك "تقديم طلب جديد"
-function showNotificationAndForm() {
-  const formWrap = document.getElementById('registrationFormContainer');
-  formWrap.style.display = 'block';
-  formWrap.scrollIntoView({ behavior: 'smooth' });
-}
+// استبدل 'myButtonId' بالزر الحقيقي عندك في الصفحة
+const myButton = document.getElementById('myButtonId'); 
+const formContainer = document.getElementById('registrationFormContainer');
 
-// نسخ رقم الحساب
-document.getElementById('copyAccountBtn').addEventListener('click', function(){
-  const text = 'SA1980000857608010276380';
-  navigator.clipboard.writeText(text).then(()=>{
-    const toast = document.getElementById('toast');
-    toast.textContent = '✅ تم نسخ رقم الحساب بنجاح';
-    toast.classList.add('show');
-    setTimeout(()=>toast.classList.remove('show'),2500);
-  });
+myButton.addEventListener('click', ()=> {
+  formContainer.style.display='block';
+  formContainer.scrollIntoView({behavior:'smooth'});
 });
 
-// إرسال النموذج
+// إخفاء النموذج عند الضغط خارج الزر
+document.addEventListener('click', e=>{
+  if(!formContainer.contains(e.target) && e.target !== myButton){
+    formContainer.style.display='none';
+  }
+});
+
+// دالة إشعار toast
+function showToast(msg){
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), 2500);
+}
+
+// نسخ رقم الحساب مع إشعار
+document.addEventListener('click', e=>{
+  if(e.target.id==='copyAccountBtn'){
+    const text = 'SA1980000857608010276380';
+    navigator.clipboard.writeText(text).then(()=>{ showToast('✅ تم نسخ رقم الحساب بنجاح'); });
+  }
+});
+
+// إرسال النموذج عبر Formcarry
 document.getElementById('registrationForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const form = this;
-  const fd = new FormData(form);
-  fetch(form.action, { method:'POST', body:fd })
+  const fd = new FormData(this);
+  fetch(this.action, {method:'POST', body:fd})
   .then(res=>{
-    if(res.ok){
-      const toast = document.getElementById('toast');
-      toast.textContent = '✅ تم إرسال الطلب بنجاح، ستصلك رسالة تأكيد على البريد الإلكتروني.';
-      toast.classList.add('show');
-      setTimeout(()=>toast.classList.remove('show'),2500);
-      form.reset();
-    } else {
-      alert('❌ حدث خطأ، حاول لاحقاً.');
-    }
-  }).catch(()=>alert('❌ فشل الاتصال، تحقق من الإنترنت.'));
+    if(res.ok){ showToast('✅ تم إرسال الطلب بنجاح، ستصلك رسالة تأكيد على البريد الإلكتروني.'); this.reset(); }
+    else showToast('❌ حدث خطأ، حاول لاحقاً.');
+  }).catch(()=>showToast('❌ فشل الاتصال، تحقق من الإنترنت.'));
 });
 </script>
 </body>
