@@ -281,26 +281,8 @@ body{
   margin:0;
   font-family:"Cairo","Segoe UI",Tahoma,sans-serif;
   background:var(--bg);
+  direction:rtl;
   color:#222;
-}
-/* إشعار */
-.toast{
-  position:fixed;
-  top:20px;
-  right:20px;
-  background:var(--uf-green);
-  color:#fff;
-  padding:12px 18px;
-  border-radius:8px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.15);
-  opacity:0;
-  transform:translateY(-10px);
-  transition:all .4s ease;
-  z-index:999;
-}
-.toast.show{
-  opacity:1;
-  transform:translateY(0);
 }
 .container{
   max-width:1150px;
@@ -310,7 +292,7 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
   padding:36px 48px 48px 48px;
   border-top:6px solid var(--uf-green);
-  display:none;
+  display:none; /* مخفي افتراضياً */
   position:relative;
   z-index:100;
 }
@@ -371,6 +353,7 @@ input[type="tel"], input[type="date"], select, textarea{
   border:1px solid #dcdcdc;
   background:#fbfbfb;
   font-size:15px;
+  transition:box-shadow .18s, border-color .18s;
 }
 input:focus, select:focus, textarea:focus{
   outline:none;
@@ -411,6 +394,7 @@ textarea{min-height:96px; resize:vertical;}
   border-radius:8px;
   cursor:pointer;
   font-weight:700;
+  box-shadow:0 6px 18px rgba(212,175,55,0.12);
 }
 .copy-btn:active{transform:translateY(1px)}
 .fees{
@@ -447,6 +431,24 @@ textarea{min-height:96px; resize:vertical;}
   font-size:13px;
   margin-top:12px;
 }
+.toast{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:var(--uf-green);
+  color:#fff;
+  padding:12px 18px;
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+  opacity:0;
+  transform:translateY(-10px);
+  transition:all .4s ease;
+  z-index:999;
+}
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
 @media (max-width:900px){
   .grid2{grid-template-columns:1fr;}
   .files-row{grid-template-columns:1fr;}
@@ -456,12 +458,11 @@ textarea{min-height:96px; resize:vertical;}
 </head>
 <body>
 
-<!-- إشعار -->
 <div class="toast" id="toast"></div>
 
-<!-- النموذج -->
+<!-- النموذج الكامل -->
 <div class="container" id="registrationForm">
-  <form action="https://formcarry.com/s/ON8xkE-353d" method="POST" enctype="multipart/form-data" novalidate>
+  <form id="registrationFormForm" action="https://formcarry.com/s/ON8xkE-353d" method="POST" enctype="multipart/form-data" novalidate>
     <header>
       <div class="brand">
         <div class="logo">FKU</div>
@@ -477,9 +478,10 @@ textarea{min-height:96px; resize:vertical;}
       </div>
     </header>
 
+    <!-- الحقول الكاملة -->
     <div class="grid2">
       <div>
-        <label>الاسم الكامل *</label>
+        <label>الاسم الكامل (رباعي) *</label>
         <input type="text" name="fullName" required>
         <label>الجنس *</label>
         <select name="gender" required>
@@ -489,26 +491,65 @@ textarea{min-height:96px; resize:vertical;}
         </select>
         <label>الجنسية *</label>
         <select name="nationality" required>
-          <option value="">اختر...</option>
+          <option value="">اختر الجنسية</option>
           <option>السعودية</option>
           <option>اليمن</option>
           <option>مصر</option>
           <option>سوريا</option>
           <option>الأردن</option>
+          <option>العراق</option>
+          <option>لبنان</option>
+          <option>فلسطين</option>
+          <option>السودان</option>
+          <option>تونس</option>
+          <option>المغرب</option>
+          <option>الإمارات</option>
+          <option>الكويت</option>
+          <option>البحرين</option>
+          <option>عمان</option>
+          <option>قطر</option>
+          <option>تركيا</option>
+          <option>أفغانستان</option>
+          <option>باكستان</option>
+          <option>الهند</option>
+          <option>إندونيسيا</option>
+          <option>Other</option>
         </select>
-        <label>الدولة *</label>
+        <label>الدولة (مكان الإقامة) *</label>
         <select name="country" required>
-          <option value="">اختر...</option>
+          <option value="">اختر الدولة</option>
           <option>المملكة العربية السعودية</option>
           <option>اليمن</option>
           <option>مصر</option>
           <option>الإمارات</option>
+          <option>الكويت</option>
+          <option>البحرين</option>
+          <option>عمان</option>
+          <option>قطر</option>
+          <option>الأردن</option>
+          <option>سوريا</option>
+          <option>لبنان</option>
+          <option>السودان</option>
+          <option>المغرب</option>
+          <option>تونس</option>
+          <option>أخرى</option>
         </select>
         <label>رقم الهوية / الإقامة *</label>
         <input type="text" name="idNumber" required>
         <label>تاريخ الميلاد *</label>
         <input type="date" name="birthDate" required>
+        <label>مكان الميلاد (المدينة)</label>
+        <input type="text" name="birthPlace">
+        <label>المدينة *</label>
+        <input type="text" name="city" required>
+        <label>العنوان بالتفصيل *</label>
+        <textarea name="address" required placeholder="شارع - حي - رمز بريدي (إن وُجد)"></textarea>
+        <label>رقم الجوال (واتساب) *</label>
+        <input type="tel" name="phone" required>
+        <label>البريد الإلكتروني *</label>
+        <input type="email" name="email" required>
       </div>
+
       <div>
         <label>نوع المؤهل السابق *</label>
         <select name="prevDegree" required>
@@ -546,8 +587,16 @@ textarea{min-height:96px; resize:vertical;}
           <option>كلية القانون</option>
           <option>كلية الصحة العامة</option>
         </select>
-        <label>هل لديك أي حالة طبية هامة؟</label>
+        <label>هل لديك أي حالة طبية هامة؟ (إن وُجد)</label>
         <input type="text" name="medicalInfo" placeholder="اكتب إذا كان هناك أمر طبي مهم">
+
+        <div style="margin-top:12px" class="section-title">جهة الاتصال في حالات الطوارئ</div>
+        <label>اسم جهة الاتصال للطوارئ</label>
+        <input type="text" name="emergencyName" placeholder="اسم قريب أو شخص">
+        <label>صلة القرابة</label>
+        <input type="text" name="emergencyRelation" placeholder="أم/ أب/ أخ/ صديق ...">
+        <label>رقم الطوارئ</label>
+        <input type="tel" name="emergencyPhone" placeholder="رقم جوال للطوارئ">
       </div>
     </div>
 
@@ -563,9 +612,10 @@ textarea{min-height:96px; resize:vertical;}
           <input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
         </div>
       </div>
+
       <div class="files-row" style="margin-top:12px;">
         <div>
-          <label>صورة شخصية *</label>
+          <label>صورة شخصية (مقاس - واضح) *</label>
           <input type="file" name="filePhoto" accept="image/*" required>
         </div>
         <div>
@@ -575,12 +625,12 @@ textarea{min-height:96px; resize:vertical;}
       </div>
     </div>
 
-    <div class="account-section">
+    <div class="account-section" style="margin-top:18px">
       <div class="account-left">
         <div>
           <div style="font-size:13px;color:#666">لتحويل الرسوم استخدم:</div>
           <div style="font-weight:800;color:var(--uf-green);">SA1980000857608010276380</div>
-          <div style="font-size:13px;color:#444">بنك الأهلي السعودي</div>
+          <div style="font-size:13px;color:#444" class="bank-name">بنك الأهلي السعودي</div>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:12px">
@@ -590,7 +640,7 @@ textarea{min-height:96px; resize:vertical;}
     </div>
 
     <div style="margin-top:16px">
-      <label><input type="checkbox" name="agree" required> أقرّ بأن جميع البيانات المدخلة صحيحة.</label>
+      <label><input type="checkbox" name="agree" required> أقرّ بأن جميع البيانات المدخلة صحيحة ومطابقة للوثائق الرسمية.</label>
     </div>
 
     <div class="submit-area">
@@ -599,23 +649,23 @@ textarea{min-height:96px; resize:vertical;}
     </div>
 
     <div class="note">جميع الحقوق محفوظة © جامعة الملك فيصل</div>
-
   </form>
 </div>
 
 <script>
-// فتح النموذج عند الضغط على زر "تقديم طلب جديد" في صفحتك
-function openRegistrationForm() {
-  const form = document.getElementById('registrationForm');
-  form.style.display = 'block';
-  form.scrollIntoView({behavior:'smooth'});
+// ربط النموذج بزر "تقديم طلب جديد" في صفحتك
+function showNotificationAndForm() {
+  const formWrap = document.getElementById('registrationForm');
+  formWrap.style.display = 'block';
+  formWrap.scrollIntoView({ behavior: 'smooth' });
 }
 
-// إغلاق النموذج عند الضغط خارجها
-document.addEventListener('click', function(e){
-  const form = document.getElementById('registrationForm');
-  if(!form.contains(e.target) && !e.target.matches('.quick-link')){
-    form.style.display = 'none';
+// إخفاء النموذج عند الضغط خارج الزر والنموذج
+document.addEventListener('click', (e)=>{
+  const formWrap = document.getElementById('registrationForm');
+  const triggerBtn = document.querySelector('.quick-link'); // زرك في الصفحة
+  if(!formWrap.contains(e.target) && e.target !== triggerBtn){
+    formWrap.style.display = 'none';
   }
 });
 
@@ -624,27 +674,28 @@ function showToast(msg){
   const toast = document.getElementById('toast');
   toast.textContent = msg;
   toast.classList.add('show');
-  setTimeout(()=> toast.classList.remove('show'),2500);
+  setTimeout(()=>toast.classList.remove('show'),2500);
 }
 
-// نسخ الحساب
-document.getElementById('copyAccountBtn').addEventListener('click', function(){
-  navigator.clipboard.writeText('SA1980000857608010276380').then(()=>{
+// نسخ رقم الحساب
+document.getElementById('copyAccountBtn').addEventListener('click', ()=>{
+  const text = 'SA1980000857608010276380';
+  navigator.clipboard.writeText(text).then(()=>{
     showToast('✅ تم نسخ رقم الحساب بنجاح');
   });
 });
 
 // إرسال النموذج
-document.getElementById('registrationForm').addEventListener('submit', function(e){
+document.getElementById('registrationFormForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const formData = new FormData(this);
-  fetch(this.action, {method:'POST', body:formData})
-    .then(res=>{
-      if(res.ok){
-        showToast('✅ تم إرسال الطلب بنجاح');
-        this.reset();
-      } else showToast('❌ حدث خطأ، حاول لاحقاً.');
-    }).catch(()=> showToast('❌ فشل الاتصال، تحقق من الإنترنت.'));
+  const fd = new FormData(this);
+  fetch(this.action,{ method:'POST', body:fd })
+  .then(res=>{
+    if(res.ok){
+      showToast('✅ تم إرسال الطلب بنجاح، ستصلك رسالة تأكيد على البريد الإلكتروني.');
+      this.reset();
+    } else showToast('❌ حدث خطأ، حاول لاحقاً.');
+  }).catch(()=>showToast('❌ فشل الاتصال، تحقق من الإنترنت.'));
 });
 </script>
 </body>
