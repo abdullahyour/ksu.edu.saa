@@ -260,8 +260,8 @@ function showNotificationAndForm() {
                 window.location.href = "academic_calendar.html";
             }, 1500);
 
-</script>                    
-<!DOCTYPE html>
+</script>
+    <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
@@ -276,7 +276,7 @@ function showNotificationAndForm() {
   --card:#ffffff;
   --muted:#6b6b6b;
 }
-*{box-sizing:border-box;}
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:"Cairo", "Segoe UI", Tahoma, sans-serif;
@@ -393,12 +393,7 @@ textarea{min-height:96px; resize:vertical;}
   font-weight:700;
   box-shadow:0 6px 18px rgba(212,175,55,0.12);
 }
-.copy-btn:active{transform:translateY(1px);}
-.copy-success{
-  color:green;
-  font-weight:700;
-  margin-left:10px;
-}
+.copy-btn:active{transform:translateY(1px)}
 .fees{
   font-weight:800;
   color:var(--uf-green);
@@ -426,20 +421,27 @@ textarea{min-height:96px; resize:vertical;}
   cursor:pointer;
   font-size:16px;
 }
+.btn.cancel{background:#9e9e9e}
 .note{
   text-align:center;
   color:#888;
   font-size:13px;
   margin-top:12px;
 }
+.copy-alert{
+  display:none;
+  text-align:center;
+  color:green;
+  font-weight:700;
+  margin-top:8px;
+}
 @media (max-width:900px){
   .grid2{grid-template-columns:1fr;}
   .files-row{grid-template-columns:1fr;}
   header{flex-direction:column; align-items:flex-start; gap:10px}
 }
-/* إخفاء النموذج افتراضيًا */
+/* النموذج مخفي افتراضياً */
 #registrationForm{display:none;}
-#confirmationMsg{display:none; color:green; font-weight:700; text-align:center; margin-top:18px;}
 </style>
 </head>
 <body>
@@ -455,72 +457,125 @@ textarea{min-height:96px; resize:vertical;}
   </div>
   <div style="text-align:left">
     <div class="bank-name">رقم الحساب للتحويل</div>
-    <div style="font-weight:800;color:var(--uf-green);" id="accountNumber">SA1980000857608010276380</div>
+    <div style="font-weight:800;color:var(--uf-green);">SA1980000857608010276380</div>
     <div style="font-size:13px;color:#666;margin-top:6px">بنك الأهلي السعودي — رسوم التسجيل: <span style="font-weight:800;color:#000">1200 ريال</span></div>
   </div>
 </header>
 
 <form id="registrationForm" action="https://formcarry.com/s/ON8xkE-353d" method="POST" enctype="multipart/form-data" novalidate>
 
-<!-- الحقول هنا (يمكنك نسخ كل الحقول كما في النموذج السابق) -->
+<!-- الحقول تبقى نفسها بدون أي تعديل -->
+<div class="grid2">
+  <div>
+    <label>الاسم الكامل (رباعي) *</label>
+    <input type="text" name="fullName" required>
 
-<!-- قسم نسخ الحساب -->
+    <label>الجنس *</label>
+    <select name="gender" required>
+      <option value="">اختر...</option>
+      <option>ذكر</option>
+      <option>أنثى</option>
+    </select>
+
+    <label>الجنسية *</label>
+    <input type="text" name="nationality" required>
+
+    <label>رقم الهوية / الإقامة *</label>
+    <input type="text" name="idNumber" required>
+
+    <label>رقم الجوال *</label>
+    <input type="tel" name="phone" required>
+
+    <label>البريد الإلكتروني *</label>
+    <input type="email" name="email" required>
+  </div>
+
+  <div>
+    <label>التخصص المطلوب *</label>
+    <input type="text" name="desiredMajor" required>
+
+    <label>الكلية *</label>
+    <input type="text" name="faculty" required>
+
+    <label>المؤهل السابق *</label>
+    <input type="text" name="prevDegree" required>
+
+    <label>المعدل *</label>
+    <input type="text" name="gpa" required>
+
+    <label>المدينة *</label>
+    <input type="text" name="city" required>
+  </div>
+</div>
+
+<!-- نسخ الحساب -->
 <div class="account-section">
   <div class="account-left">
     <div class="bank-name">رقم الحساب:</div>
-    <div class="fees" id="accountNumberText">SA1980000857608010276380</div>
+    <div class="fees" id="accountNumber">SA1980000857608010276380</div>
   </div>
   <button type="button" class="copy-btn" onclick="copyAccount()">نسخ الرقم</button>
-  <span id="copySuccess" class="copy-success"></span>
 </div>
 
-<div id="confirmationMsg">تم إرسال الطلب بنجاح! ستصل لك رسالة تأكيد على البريد الإلكتروني.</div>
+<div id="copyAlert" class="copy-alert">تم نسخ الرقم بنجاح ✅</div>
+
+<!-- رسالة التأكيد -->
+<div id="confirmationMsg" style="display:none; text-align:center; margin-top:18px; color:green; font-weight:700;">
+تم إرسال الطلب بنجاح! ستصل لك رسالة تأكيد على البريد الإلكتروني.
+</div>
 
 <div class="submit-area">
   <button type="submit" class="btn">إرسال الطلب</button>
 </div>
-<p class="note">يرجى التأكد من جميع البيانات قبل الضغط على إرسال.</p>
+<p class="note">يرجى التأكد من جميع البيانات قبل الإرسال.</p>
 </form>
 
+<!-- الزر حقك "طلب جديد" -->
+<div style="text-align:center; margin-top:20px;">
+  <button id="showFormBtn" class="btn">طلب جديد</button>
+</div>
+
+</div>
+
 <script>
-// إظهار النموذج عند الضغط على زرك (استبدل 'showFormBtn' بالزر الحقيقي عندك)
+// اظهار/اخفاء النموذج بنفس الزر
 document.getElementById('showFormBtn').addEventListener('click', function(){
-  document.getElementById('registrationForm').style.display = 'block';
-  this.style.display = 'none';
+  const form = document.getElementById('registrationForm');
+  form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
 });
 
-// نسخ رقم الحساب مع رسالة نجاح
+// نسخ رقم الحساب بدون شاشة خارجية
 function copyAccount(){
-  var accountText = document.getElementById("accountNumberText").innerText;
+  var accountText = document.getElementById("accountNumber").innerText;
   navigator.clipboard.writeText(accountText).then(function(){
-    document.getElementById("copySuccess").innerText = "تم النسخ بنجاح!";
-    setTimeout(()=>{document.getElementById("copySuccess").innerText="";},3000);
+    var alertMsg = document.getElementById("copyAlert");
+    alertMsg.style.display = 'block';
+    setTimeout(()=> alertMsg.style.display='none', 2500);
   });
 }
 
-// إرسال النموذج وعرض رسالة تأكيد
+// تأكيد بعد الإرسال
 document.getElementById('registrationForm').addEventListener('submit', function(e){
   e.preventDefault();
   var form = e.target;
   var formData = new FormData(form);
-  fetch(form.action,{
-    method:'POST',
+  fetch(form.action, {
+    method: 'POST',
     body: formData,
-    headers:{'Accept':'application/json'}
-  }).then(response=>{
+    headers: {'Accept': 'application/json'}
+  }).then(response => {
     if(response.ok){
       form.reset();
       form.style.display = 'none';
       document.getElementById('confirmationMsg').style.display = 'block';
-    } else {
-      alert('حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.');
+    }else{
+      alert('حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً.');
     }
-  }).catch(error=>{
-    alert('حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.');
+  }).catch(()=>{
+    alert('حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً.');
   });
 });
 </script>
-
 </body>
 </html>
 </body>
