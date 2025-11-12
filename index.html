@@ -24,20 +24,19 @@
 body{background:var(--bg);color:#222;}
 a{text-decoration:none;color:inherit;}
 button{cursor:pointer;}
-
 .login-container{
 max-width:500px;margin:50px auto;background:linear-gradient(135deg,var(--uf-green),var(--gold));border-radius:14px;padding:30px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.15);}
 .login-header img{width:80px;margin-bottom:12px;}
 .login-header h1{color:#fff;font-size:24px;margin-bottom:6px;}
 .login-header p{color:#fff;font-size:16px;margin-bottom:20px;}
 .input-group{position:relative;margin-bottom:15px;}
-.input-group i{position:absolute:left:12px;top:50%;transform:translateY(-50%);color:#555;}
+.input-group i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#555;}
 .input-group input{width:100%;padding:12px 12px 12px 36px;border-radius:10px;border:none;font-size:15px;}
 .login-btn{background:#fff;color:var(--uf-green);padding:12px 24px;border:none;border-radius:10px;font-weight:700;font-size:16px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;}
 .quick-access{margin-top:25px;}
 .quick-access h3{color:#fff;margin-bottom:12px;}
 .quick-links .quick-link{display:flex;align-items:center;gap:10px;justify-content:center;background:rgba(255,255,255,0.2);padding:10px;border-radius:10px;color:#fff;margin-bottom:10px;}
-.container-form{display:none;max-width:800px;margin:40px auto;background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:30px;}
+.container-form{display:none;max-width:900px;margin:40px auto;background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:30px;}
 .container-form header .logo{width:60px;height:60px;background:linear-gradient(135deg,var(--uf-green),var(--gold));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;border-radius:10px;}
 .container-form header h1{color:var(--uf-green);margin-bottom:6px;}
 .container-form header p.subtitle{color:#666;margin-bottom:20px;}
@@ -55,11 +54,12 @@ textarea{resize:vertical;}
 .payment-section h2{color:var(--uf-green);margin-bottom:15px;}
 .payment-section label{display:block;margin:8px 0 5px;}
 .payment-section input{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:12px;}
+.payment-section .copy-btn{background:var(--gold);color:#fff;padding:6px 12px;border:none;border-radius:6px;margin-left:8px;cursor:pointer;}
 .success-message{display:none;text-align:center;padding:30px;background:#e0f5e9;border-radius:14px;color:var(--uf-green);font-weight:700;margin:30px auto;}
-.copy-btn{background:var(--gold);color:#000;padding:6px 10px;border-radius:6px;margin-left:5px;cursor:pointer;border:none;}
 @media(max-width:900px){.grid2{grid-template-columns:1fr;}}
 </style>
 </head>
+
 <body>
 
 <div class="login-container">
@@ -160,17 +160,18 @@ textarea{resize:vertical;}
 </form>
 </div>
 
-<!-- صفحة السداد -->
+<!-- صفحة السداد بعد إرسال البيانات -->
 <div class="payment-section" id="paymentSection">
 <h2>صفحة السداد</h2>
 <label>اسم المحول:</label><input type="text" id="payerName" required>
-<label>رقم حساب المحول:</label><input type="text" id="payerAccount" required>
-<div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;">
-<input type="text" value="SA3380000984608016472540" id="iban" readonly style="flex:1;padding:10px;border-radius:8px;border:1px solid #ccc;">
-<button class="copy-btn" onclick="copyIBAN()">نسخ</button>
+<label>رقم حساب المحول:</label>
+<div style="display:flex;align-items:center;">
+<input type="text" id="payerAccount" value="SA3380000984608016472540" readonly>
+<button class="copy-btn" onclick="copyAccount()">نسخ</button>
 </div>
+<label>اسم البنك:</label><input type="text" value="الراجحي" readonly>
 <label>تاريخ العملية:</label><input type="date" id="paymentDate" required>
-<label>المبلغ المحول:</label><input type="number" id="amount" value="1000" required>
+<label>المبلغ المحول:</label><input type="number" id="amount" value="1000" readonly>
 <label>رفع إيصال الدفع:</label><input type="file" id="receiptFile" required>
 <div class="submit-area">
 <button class="btn" id="submitPayment">إرسال السداد</button>
@@ -184,21 +185,20 @@ textarea{resize:vertical;}
 <div class="toast" id="toast"></div>
 
 <script>
-// إظهار نموذج التقديم
+let hasSubmitted=false;
+
 function showForm(){
 document.getElementById('registrationForm').style.display='block';
 }
 
-// نسخ رقم الحساب
-function copyIBAN(){
-const iban=document.getElementById('iban');
-iban.select();
-iban.setSelectionRange(0,99999);
+function copyAccount(){
+let copyText=document.getElementById('payerAccount');
+copyText.select();
+copyText.setSelectionRange(0,99999);
 document.execCommand('copy');
 showToast('✅ تم نسخ رقم الحساب');
 }
 
-// Toast
 function showToast(msg){
 const toast=document.getElementById('toast');
 toast.textContent=msg;
@@ -206,7 +206,6 @@ toast.classList.add('show');
 setTimeout(()=>toast.classList.remove('show'),2500);
 }
 
-// التحقق من تسجيل الدخول
 document.getElementById('loginForm').addEventListener('submit',function(e){
 e.preventDefault();
 const user=document.getElementById('username').value.trim();
@@ -215,23 +214,20 @@ if(!user || !pass){showToast('❌ يرجى ملء اسم المستخدم وكل
 showToast('✅ تم تسجيل الدخول');
 });
 
-// إرسال نموذج التقديم
-let submitted=false;
 document.getElementById('registrationFormForm').addEventListener('submit',function(e){
 e.preventDefault();
-if(submitted){showToast('❌ لقد قدمت الطلب مسبقاً');return;}
+if(hasSubmitted){showToast('❌ لقد تم إرسال بياناتك مسبقاً'); return;}
 const formData=new FormData(this);
 fetch(this.action,{method:'POST',body:formData})
 .then(res=>{if(res.ok){
 showToast('✅ تم إرسال بياناتك بنجاح');
 document.getElementById('registrationForm').style.display='none';
 document.getElementById('paymentSection').style.display='block';
-submitted=true;
+hasSubmitted=true;
 }else showToast('❌ حدث خطأ حاول لاحقاً');
 }).catch(()=>showToast('❌ فشل الاتصال'));
 });
 
-// إرسال السداد
 document.getElementById('submitPayment').addEventListener('click',function(){
 const payerName=document.getElementById('payerName').value.trim();
 const payerAccount=document.getElementById('payerAccount').value.trim();
@@ -239,22 +235,11 @@ const paymentDate=document.getElementById('paymentDate').value;
 const amount=document.getElementById('amount').value.trim();
 const receiptFile=document.getElementById('receiptFile').files[0];
 if(!payerName||!payerAccount||!paymentDate||!amount||!receiptFile){showToast('❌ يرجى ملء جميع الحقول وإرفاق الإيصال');return;}
-// إرسال البيانات للسداد (يمكن تعديل الرابط لإرسال بريد أو Google Script)
-const paymentData=new FormData();
-paymentData.append('payerName',payerName);
-paymentData.append('payerAccount',payerAccount);
-paymentData.append('paymentDate',paymentDate);
-paymentData.append('amount',amount);
-paymentData.append('receiptFile',receiptFile);
-fetch("https://script.google.com/macros/s/AKfycbxglQ_oGCF_ICL56X9dofD56F1mF89vIef6NrN7BObysCTEs5xQVfQ9wGc8N4aWwkG2/exec",{method:'POST',body:paymentData})
-.then(res=>{if(res.ok){
 showToast('✅ تم إرسال السداد بنجاح');
 document.getElementById('paymentSection').style.display='none';
 document.getElementById('successMessage').style.display='block';
-}else showToast('❌ فشل إرسال السداد');
-}).catch(()=>showToast('❌ فشل الاتصال'));
 });
 </script>
 
 </body>
-  </html>
+</html>
